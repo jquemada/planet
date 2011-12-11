@@ -1,0 +1,29 @@
+<%= form_for(@selected) do |f| %>
+  <% if @selected.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@selected.errors.count, "error") %> prohibited this selected from being saved:</h2>
+
+      <ul>
+      <% @selected.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :trip_id %><br />
+    <%= f.number_field :trip_id %>
+  </div>
+  <div class="field">
+    <%= f.label :site_id %><br />
+    <%= f.number_field :site_id %>
+  </div>
+  <div class="field">
+    <%= f.label :hour %><br />
+    <%= f.number_field :hour %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

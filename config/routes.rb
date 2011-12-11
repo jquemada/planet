@@ -1,5 +1,7 @@
 Planet::Application.routes.draw do
 
+  resources :selecteds
+
   resources :trips
 
   resources :sites
