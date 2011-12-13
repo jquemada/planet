@@ -1,4 +1,5 @@
 
+<div id="selected">
   <table> 
    <%  trip.selecteds.order(:hour).each do |selected| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>"> 
@@ -21,8 +22,9 @@
         <%= link_to 'Destroy', selected, 
                     :confirm => 'Are you sure?',
                     :method => :delete %>
+
       </td> 
     </tr> 
    <% end %>
   </table> 
-
+</div>
