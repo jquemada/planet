@@ -14,7 +14,8 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @trip = Trip.find(params[:id])
-
+    @selected = Selected.new
+      
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @trip }

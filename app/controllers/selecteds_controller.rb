@@ -44,7 +44,7 @@ class SelectedsController < ApplicationController
 
     respond_to do |format|
       if @selected.save
-        format.html { redirect_to @selected, notice: 'Selected was successfully created.' }
+        format.html { redirect_to @selected.trip, notice: 'Selected was successfully created.' }
         format.json { render json: @selected, status: :created, location: @selected }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class SelectedsController < ApplicationController
 
     respond_to do |format|
       if @selected.update_attributes(params[:selected])
-        format.html { redirect_to @selected, notice: 'Selected was successfully updated.' }
+        format.html { redirect_to @selected.trip    , notice: 'Selected was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
@@ -76,7 +76,8 @@ class SelectedsController < ApplicationController
     @selected.destroy
 
     respond_to do |format|
-      format.html { redirect_to selecteds_url }
+      format.html { redirect_to @selected.trip }
+#     format.html { redirect_to selecteds_url }
       format.json { head :ok }
     end
   end
