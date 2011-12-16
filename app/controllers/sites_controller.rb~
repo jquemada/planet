@@ -2,7 +2,7 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @selected = Selected.new
+
     if params[:type_id].nil? or params[:type_id].empty?
       @sites = Site.all
     else

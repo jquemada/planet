@@ -21,7 +21,7 @@
 
   <%= form_for(@selected, :remote=> true) do |s| %>
     <span>
-       Viajes disponibles:
+       <b>Viajes disponibles:</b>  
  	   <%= s.number_field :site_id, :value => site.id, :hidden => true %>
  	   <%= s.collection_select(:trip_id, 
                             Trip.all,

@@ -17,7 +17,7 @@
     <td><%= selected.hour %></td>
     <td><%= link_to 'Show', selected %></td>
     <td><%= link_to 'Edit', edit_selected_path(selected) %></td>
-    <td><%= link_to 'Destroy', selected, :confirm=> 'Are you sure?', :method=> :delete %></td>
+    <td><%= link_to 'Destroy', selected, :confirm=> 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

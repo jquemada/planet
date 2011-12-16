@@ -20,7 +20,7 @@
     </span>
   </div> 
 <div id="site_list">
-
+  <%= render(@site) %>
   <%= form_for(@selected, :remote=> true) do |s| %>
     <span>
        <b>Viajes disponibles:</b>  
