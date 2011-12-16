@@ -22,5 +22,18 @@
 </div> 
 
 <p />
+<!--<%= link_to 'Include', mi_viajes_path, :method => :post, :mi_viaje => @mi_viaje_candidate %> | -->
+<!--
+<%= link_to 'Include', :controller => 'mi_viajes', :action => 'create', :id => @mi_viaje_candidate %>
+-->
+<%= form_for(@mi_viaje_candidate) do |f| %>
+
+<%= f.number_field :site_id, {:value => @site.id, :style => "display:none"} %>
+
+<%= f.number_field :order_in_trip, {:style => "display:none"} %>
+
+<%= f.submit nil, :value => "Añadir a Mi Viaje"%>
+<%end%>
+<p />
 <%= link_to 'Edit', edit_site_path(@site) %> |
 <%= link_to 'Back', sites_path %>

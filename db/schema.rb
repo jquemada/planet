@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111211202305) do
+ActiveRecord::Schema.define(:version => 20111216164300) do
+
+  create_table "mi_viajes", :force => true do |t|
+    t.integer  "site_id"
+    t.integer  "order_in_trip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "selecteds", :force => true do |t|
     t.integer  "trip_id"
