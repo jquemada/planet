@@ -80,6 +80,10 @@ class SitesController < ApplicationController
   def destroy
     @site = Site.find(params[:id])
     @site.destroy
+    #Borro las entradas de mi viaje que me hagan referencia.
+   
+    MiViaje.delete_all('site_id = ' + @site.id.to_s)
+    @site.destroy
 
     respond_to do |format|
       format.html { redirect_to sites_url }
