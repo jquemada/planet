@@ -1,5 +1,11 @@
 <div id="site_list">
-<h1>Listing sites</h1>
+<% if params[:type_id].nil? or params[:type_id].empty? %>
+
+<h1>Todos Los Sitios </h1>
+<% @num else type_id=params[:type_id] %>
+
+<h1> <%= @type %></h1>
+<% end %>
 
 <table>
  <% @sites.each do |site| %>
