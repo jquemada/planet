@@ -20,6 +20,7 @@
       <td class="list_actions"> 
         <%= link_to 'Show', site %><br/>
         <%= link_to 'Edit', edit_site_path(site) %><br/>
+        <%= button_to 'Add to viaje', :controller => "viajes", :action => 'create', :method => "post", "viaje"=>{"site_id"=>site.id, "position"=>@pos} %> <br/>
         <%= link_to 'Destroy', site, 
                     :confirm => 'Are you sure?',
                     :method => :delete %>

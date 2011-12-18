@@ -1,5 +1,7 @@
 Planet::Application.routes.draw do
 
+  resources :viajes
+
   resources :selecteds
 
   resources :trips
@@ -10,6 +12,10 @@ Planet::Application.routes.draw do
     
   resources :types do
     resources :sites
+  end  
+  
+  resources :sites do 
+    resources :viajes
   end
 
   get "planet/index"
@@ -17,6 +23,8 @@ Planet::Application.routes.draw do
   get "planet/contact"
 
   get "planet/ejemplo"    # Se añade una nueva ruta a la acción ejemplo
+    
+  get "planet/author"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

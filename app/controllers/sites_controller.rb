@@ -1,8 +1,15 @@
 class SitesController < ApplicationController
+
   # GET /sites
   # GET /sites.json
   def index
-
+      
+      if Viaje.nil? or Viaje.find(:all).empty?
+        @pos = 1
+    else
+        @pos = Viaje.maximum('position') + 1
+    end
+      
     if params[:type_id].nil? or params[:type_id].empty?
       @sites = Site.all
     else
