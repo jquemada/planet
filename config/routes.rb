@@ -1,6 +1,8 @@
 Planet::Application.routes.draw do
  
 
+  resources :trips
+
   resources :types do
 	resources:sites
 end
