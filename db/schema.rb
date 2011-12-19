@@ -11,15 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111211202305) do
-
-  create_table "selecteds", :force => true do |t|
-    t.integer  "trip_id"
-    t.integer  "site_id"
-    t.integer  "hour"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20111217232823) do
 
   create_table "sites", :force => true do |t|
     t.string   "name"
@@ -33,17 +25,16 @@ ActiveRecord::Schema.define(:version => 20111211202305) do
     t.datetime "updated_at"
   end
 
-  create_table "trips", :force => true do |t|
+  create_table "types", :force => true do |t|
     t.string   "name"
     t.text     "description"
-    t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "types", :force => true do |t|
-    t.string   "name"
-    t.text     "description"
+  create_table "viajes", :force => true do |t|
+    t.integer  "site_ide"
+    t.integer  "pos"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

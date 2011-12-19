@@ -1,3 +1,4 @@
+<p id="notice" style="display: none;"><%= notice %></p>
 <div id="site">
  
   <h1><%= @site.type.name if @site.type %></h1> 
@@ -23,4 +24,6 @@
 
 <p />
 <%= link_to 'Edit', edit_site_path(@site) %> |
-<%= link_to 'Back', sites_path %>
+<%= link_to 'Back', sites_path %> |
+<%= link_to 'Incluir', '/viajes/new/'+@site.id.to_s, remote: true,
+	class: 'add_viaje_show_site' %>

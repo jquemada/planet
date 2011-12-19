@@ -5,13 +5,6 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-
-  <script type="text/javascript">
-    $(function() {
-      $( "#trip_description" ).cleditor();
-    });
-  </script>
-
 </head>
 <body id="planet"> 
   <div id="banner"> 
@@ -23,7 +16,7 @@
       <%= link_to "Home", planet_index_path %><br /> 
       <%= link_to "Tipos",  types_path %><br /> 
       <%= link_to "Sitios", sites_path %><br /> 
-      <%= link_to "Viajes", trips_path %><br /> 
+      <%= link_to "Viajes", viajes_path %><br /> 
       <%= link_to "Contact", planet_contact_path %>
     </div> 
     <div id="main"> 

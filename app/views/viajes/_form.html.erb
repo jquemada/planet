@@ -1,0 +1,22 @@
+<%= form_for(@viaje) do |f| %>
+  <% if @viaje.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@viaje.errors.count, "error") %> prohibited this viaje from being saved:</h2>
+
+      <ul>
+      <% @viaje.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+	Ponga en que posicion vera este sitio segun el orden establecido por su recorrido<br />
+  <% f.label :pos  %><br />
+    <%= f.number_field :pos %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

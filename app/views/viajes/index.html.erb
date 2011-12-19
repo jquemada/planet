@@ -1,8 +1,10 @@
 <div id="site_list"> 
-  <h1>Listing Sites</h1> 
- 
-  <table> 
-  <% @sites.each do |site| %>
+<h1>Listing viajes</h1>
+
+<table>
+
+  <% @viajes.each do |viaje| %>
+  <% site = Site.find(viaje.site_ide) %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>"> 
  
       <td> 
@@ -19,11 +21,11 @@
  
       <td class="list_actions"> 
         <%= link_to 'Show', site %><br/>
-        <%= link_to 'Edit', edit_site_path(site) %><br/>
-        <%= link_to 'Destroy', site,
+        <%= link_to 'Edit', edit_viaje_path(viaje) %><br/>
+        <%= link_to 'No incluir', viaje, 
                     :confirm => 'Are you sure?',
-                    :method => :delete %><br/>
-		<%= link_to 'Incluir', '/viajes/new/'+site.id.to_s,remote: true, class: 'add_viaje' %><br/>
+		    remote: true, class: 'delete_viaje',
+                    :method => :delete %>
       </td> 
     </tr> 
   <% end %>
@@ -31,5 +33,3 @@
 </div> 
  
 <br /> 
- 
-<%= link_to 'New site', new_site_path %>

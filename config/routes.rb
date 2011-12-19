@@ -1,8 +1,6 @@
 Planet::Application.routes.draw do
 
-  resources :selecteds
-
-  resources :trips
+  resources :viajes
 
   resources :sites
     
@@ -11,6 +9,8 @@ Planet::Application.routes.draw do
   resources :types do
     resources :sites
   end
+  
+  match "/viajes/new/:id" => "viajes#new"
 
   get "planet/index"
 

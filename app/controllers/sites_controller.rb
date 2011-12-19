@@ -79,6 +79,11 @@ class SitesController < ApplicationController
   def destroy
     @site = Site.find(params[:id])
     @site.destroy
+	
+	@viajes = Viaje.find_all_by_site_ide(params[:id])
+	@viajes.each do |viaje|
+	viaje.destroy
+	end
 
     respond_to do |format|
       format.html { redirect_to sites_url }
