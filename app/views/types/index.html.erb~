@@ -10,7 +10,7 @@
           <dt><%= link_to type.name, type_sites_path(type) %></dt> 
           <dd><%= truncate(strip_tags(type.description),
                  :length => 80) %></dd> 
-          <df><%= "Sitios:"+Site.where("type_id like ?",type.id).count.to_s()%></df>      
+          <dd><%= "Sitios:"+Site.where("type_id like ?",type.id).count.to_s()%></dd>      
         </dl> 
       </td> 
  

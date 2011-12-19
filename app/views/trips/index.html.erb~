@@ -15,8 +15,8 @@
         <td class="list_description"> 
             <dl> 
                 <dt><%= link_to trip.site.name, trip.site %></dt> 
-                <dd><%= truncate(strip_tags(trip.site.description),:length => 80) %></dd>
-                <df>Posición: <%= trip.position %></df>
+                <dd><%= truncate(strip_tags(trip.site.description),
+                 :length => 80) %></dd>
             </dl> 
         </td>
     
