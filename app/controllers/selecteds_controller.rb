@@ -45,7 +45,6 @@ class SelectedsController < ApplicationController
     respond_to do |format|
       if @selected.save
         format.html { redirect_to @selected.trip, notice: 'Selected was successfully created.' }
-        format.js
         format.json { render json: @selected, status: :created, location: @selected }
       else
         format.html { render action: "new" }
