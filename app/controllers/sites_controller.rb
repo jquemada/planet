@@ -9,6 +9,8 @@ class SitesController < ApplicationController
       @sites = Type.find(params[:type_id]).sites
     end
     
+    @selected = Selected.new
+ 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sites }

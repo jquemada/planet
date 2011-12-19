@@ -22,8 +22,19 @@
         <%= link_to 'Edit', edit_site_path(site) %><br/>
         <%= link_to 'Destroy', site, 
                     :confirm => 'Are you sure?',
-                    :method => :delete %>
-      </td> 
+                    :method => :delete %><br/>
+ 	<%= form_for(@selected, remote: true) do |f| %>
+  
+ 	<%= f.number_field :site_id, :value => site.id, :hidden => true %>
+   	<%= f.collection_select(:trip_id, 
+                            Trip.all,
+                            :id, 
+                            :name) %>
+	<%= f.select(:hour, Array.new(24, 0).fill {|i| [(i.to_s + 'H'), i]}) %>
+	<%= f.submit "Añadir sitio" %>
+	<% end %>
+ 
+    </td> 
     </tr> 
   <% end %>
   </table> 
