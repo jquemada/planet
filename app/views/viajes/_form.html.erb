@@ -1,0 +1,27 @@
+<%= form_for(@viaje) do |f| %>
+  <% if @viaje.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@viaje.errors.count, "error") %> prohibited this viaje from being saved:</h2>
+
+      <ul>
+      <% @viaje.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% site = Site.find(@viaje.site_id) %>
+  <%= image_tag(site.image_url, :class => 'site_image') %>
+
+  <h3><%= site.name %></h3> 
+
+  <p><%=sanitize site.description %></p>
+  <div class="field">
+    <%= f.label :hour %><br />
+    <%= f.select(:hour, Array.new(24, 0).fill {|i| [(i.to_s + 'H'), i]}) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

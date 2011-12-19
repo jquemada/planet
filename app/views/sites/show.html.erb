@@ -22,5 +22,6 @@
 </div> 
 
 <p />
+<%= link_to 'Añadir Sitio', '/viajes/new/'+@site.id.to_s,remote: true, class: 'add_viaje_show_site' %> 
 <%= link_to 'Edit', edit_site_path(@site) %> |
 <%= link_to 'Back', sites_path %>

@@ -1,5 +1,7 @@
 Planet::Application.routes.draw do
 
+  resources :viajes
+
   resources :selecteds
 
   resources :trips
@@ -18,6 +20,7 @@ Planet::Application.routes.draw do
 
   get "planet/ejemplo"    # Se añade una nueva ruta a la acción ejemplo
 
+  match 'viajes/new/:id' => 'viajes#new'	
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+  <% site = Site.find(@viaje.site_id) %>
+  
+  <h1><%= site.type.name if site.type %></h1> 
+
+  <%= image_tag(site.image_url, :class => 'site_image') %>
+
+  <h3><%= site.name %></h3> 
+
+  <p><%=sanitize site.description %></p>
+
+<p>
+  <b>Hour:</b>
+  <%= @viaje.hour %>
+</p>
+
+
+<%= link_to 'Edit', edit_viaje_path(@viaje) %> |
+<%= link_to 'Back', viajes_path %>
