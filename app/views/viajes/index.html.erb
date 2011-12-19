@@ -1,24 +1,39 @@
+<div id="site_list"> 
 <h1>Listing viajes</h1>
 
 <table>
-  <tr>
-    <th>Site</th>
+   <tr class="<%= cycle('list_line_odd', 'list_line_even') %>"> 
+    <th>Image</th>
+    <th>Site and description</th>
     <th>Position</th>
-    <th></th>
-    <th></th>
     <th></th>
   </tr>
 
 <% @viajes.order(:position).each do |viaje| %>
-  <tr>
-    <td><%= viaje.site.name if viaje.site %></td>
-    <td><%= viaje.position %></td>
-    <td><%= link_to 'Show', viaje.site %> |</td>
-    <td><%= link_to 'Edit Position', edit_viaje_path(viaje) %> |</td>
-    <td><%= link_to 'Destroy', viaje, confirm: 'Are you sure?', method: :delete %></td>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>"> 
+    <td> 
+        <%= link_to image_tag(viaje.site.image_url, :class => 'list_image'), viaje.site %>
+    </td> 
+    <td class="list_description"> 
+        <dl> 
+          <dt><%= link_to viaje.site.name if viaje.site %></dt> 
+          <dd><%= truncate(strip_tags(viaje.site.description),
+                 :length => 80) %></dd>
+        </dl> 
+    </td>
+    <td>	
+    	<%= viaje.position %>
+    </td>
+    <td class="list_actions"> 
+    
+    	<%= link_to 'Show', viaje.site %> <br/>
+    	<%= link_to 'Edit Position', edit_viaje_path(viaje) %> <br/>
+    	<%= link_to 'Destroy', viaje, confirm: 'Are you sure?', method: :delete %>
+    </td>
   </tr>
 <% end %>
 </table>
+</div>
 
 <br />
 
