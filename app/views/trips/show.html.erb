@@ -1,0 +1,42 @@
+<% if notice != nil %>
+  <p id="notice"><%= notice %></p>
+<% end %>
+
+<!-- Since there is only one, we probably do not care about its name
+<p>
+  <b>Name:</b>
+  <%= @trip.name %>
+</p>
+-->
+
+<% if @trip.sites.count < 1 %>
+  <p>This trip does not have sites for now. Please add a site usind the "Add to trip" button on sites page.</p>
+
+<% else %>
+
+<div id="site_list">
+<h1>Selected sites in this trip</h1>
+<table>
+<% @trip.sites.find(:all, :order => 'number ASC').each do |site| %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>"> 
+      <td> 
+        <%= link_to image_tag(site.image_url, :class => 'list_image'), site %>
+      </td> 
+ 
+      <td class="list_description"> 
+        <dl> 
+          <dt><%= link_to site.name, site %></dt> 
+          <dd><%= truncate(strip_tags(site.description),
+                 :length => 80) %></dd>
+        </dl> 
+      </td>
+	</tr>  
+<% end %>
+</table>
+</div>
+
+<% end %>
+
+
+<%= link_to 'Edit', edit_trip_path(@trip) %> |
+<%= link_to 'Back', trips_path %>

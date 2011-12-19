@@ -1,5 +1,14 @@
 Planet::Application.routes.draw do
 
+  resources :trip_sites
+
+  resources :trips do
+    member do
+      post 'add_site'
+      post 'update_site'
+	end
+  end
+
   resources :sites
     
   resources :types

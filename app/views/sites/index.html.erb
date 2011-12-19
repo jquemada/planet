@@ -22,7 +22,10 @@
         <%= link_to 'Edit', edit_site_path(site) %><br/>
         <%= link_to 'Destroy', site, 
                     :confirm => 'Are you sure?',
-                    :method => :delete %>
+                    :method => :delete %><br />
+		<% unless site.trips.where(:id => @default_trip.id).present? %>
+		  <%= button_to 'Add to trip', :controller => 'trips', :action => 'add_site', :id => @default_trip.id, :site_id => site.id %><br/>
+		<% end %>
       </td> 
     </tr> 
   <% end %>

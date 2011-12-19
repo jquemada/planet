@@ -1,0 +1,26 @@
+<h1>Editing trip</h1>
+
+
+<table>
+	<tr><th>Position</th><th>Site</th></tr>
+<% @trip.sites.find(:all, :order => 'number ASC').each_with_index do |site, position| %>
+	<tr><td>
+		<form action="<%= url_for :controller => 'trips', :action => 'update_site' %>" method="POST">
+			<input type="hidden" name="id" value="<%= @trip.id %>"></input>
+			<input type="hidden" name="site_id" value="<%= site.id %>"></input>
+			<select name="new_pos" class="autosubmit">
+				<% for i in 0..@trip.sites.count-1 %>
+					<% if i != position %>
+				<option value="<%= i %>"><%= i %></option>
+					<% else %>
+				<option selected value="<%= i %>"><%= i %></option>
+					<% end %>
+				<% end %>
+			</select>
+		</form>
+	</td><td><%= site.name %></td></tr>
+<% end %>
+</table>
+
+<%= link_to 'Show', @trip %> |
+<%= link_to 'Back', trips_path %>

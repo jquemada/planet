@@ -22,5 +22,8 @@
 </div> 
 
 <p />
+<% unless @site.trips.where(:id => @default_trip.id).present? %>
+  <%= button_to 'Add to trip', :controller => 'trips', :action => 'add_site', :id => @default_trip.id, :site_id => @site.id %><br/>
+<% end %>
 <%= link_to 'Edit', edit_site_path(@site) %> |
 <%= link_to 'Back', sites_path %>

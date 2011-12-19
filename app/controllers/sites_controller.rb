@@ -2,6 +2,7 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
+    @default_trip = Trip.find_or_create_by_name('default')
 
     if params[:type_id].nil? or params[:type_id].empty?
       @sites = Site.all
@@ -18,6 +19,8 @@ class SitesController < ApplicationController
   # GET /sites/1
   # GET /sites/1.json
   def show
+    @default_trip = Trip.find_or_create_by_name('default')
+
     @site = Site.find(params[:id])
 
     respond_to do |format|
