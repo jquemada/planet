@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-
+<%= link_to 'Show', sites_path(@selected.site_id) %> |
 <%= link_to 'Back', trips_path %>

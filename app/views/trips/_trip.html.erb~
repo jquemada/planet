@@ -19,7 +19,6 @@
  
       <td class="list_actions"> 
         <%= link_to 'Show', selected.site %><br/>
-	<%= link_to 'Edit', edit_selected_path(selected)%><br/>
         <%= link_to 'Destroy', selected, 
                     :confirm => 'Are you sure?',
                     :method => :delete %>

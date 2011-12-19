@@ -14,7 +14,7 @@
 
 <div class="field">
     <%= f.label :trip_id %><br />
-    <%= f.collection_select(:trip_id, Trip.find(:all, :order => :name), :id, :name) %>
+    <%= f.collection_select(:trip_id, Type.find(:all, :order => :name), :id, :name) %>
   </div>
   
   <div class="field">

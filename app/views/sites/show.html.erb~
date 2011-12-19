@@ -24,4 +24,4 @@
 <p />
 <%= link_to 'Edit', edit_site_path(@site) %> |
 <%= link_to 'Back', sites_path %> |
-<%= link_to 'Incluir en Viaje',	trips_path%>
+<%= link_to 'Incluir en Viaje',	trip_path%>

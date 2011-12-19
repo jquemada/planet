@@ -23,7 +23,7 @@
       <td class="list_actions"> 
         <%= link_to 'Show', site %><br/>
         <%= link_to 'Edit', edit_site_path(site) %><br/>
-	<%= link_to 'Incluir en Viaje', trips_path%><br/>
+	<%= link_to 'Incluir en Viaje', trip_path%><br/>
         <%= link_to 'Destroy', site, 
                     :confirm => 'Are you sure?',
                     :method => :delete %>
