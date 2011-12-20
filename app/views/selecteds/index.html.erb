@@ -1,0 +1,27 @@
+<h1>Listing selecteds</h1>
+
+<table>
+  <tr>
+    <th>Trip</th>
+    <th>Site</th>
+    <th>Hour</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @selecteds.each do |selected| %>
+  <tr>
+    <td><%= selected.trip_id %></td>
+    <td><%= selected.site_id %></td>
+    <td><%= selected.hour %></td>
+    <td><%= link_to 'Show', selected %></td>
+    <td><%= link_to 'Edit', edit_selected_path(selected) %></td>
+    <td><%= link_to 'Destroy', selected, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Selected', new_selected_path %>
