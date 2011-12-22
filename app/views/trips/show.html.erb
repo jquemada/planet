@@ -20,7 +20,7 @@
 <h1> Sitios a visitar </h1>
 <%= render(@trip) %>
 
-<%= form_for(@selected) do |f| %>
+<%= form_for(@selected, remote: true) do |f| %>
   <%= hidden_field_tag(:"selected[trip_id]", @trip.id) %>  
  <!-- modificación mía poruqe el hidden anterior no funcionaba -->  
  <%= f.collection_select(:site_id, Site.all, :id, :name) %>

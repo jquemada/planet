@@ -1,3 +1,4 @@
+<div id="selected">
 <table>
  <% trip.selected.order(:hour).each do |selected| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even')%>" >
@@ -25,3 +26,4 @@
     </tr>
   <% end %>
   </table>
+</div>
