@@ -9,7 +9,7 @@ class SitesController < ApplicationController
 if params[:type_id].nil? or params[:type_id].empty?
     @sites = Site.all
 else
-    @sites = Type.find(params[:type_id]).sites
+    @sites = Type.find(params[:type_id]).sites # esto puede dar 0, qué hacemos en ese caso?? 
 @type = Type.find(params[:type_id]).name
 end
 
