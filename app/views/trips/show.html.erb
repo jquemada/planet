@@ -2,6 +2,7 @@
 <p id="notice"><%= notice %></p>
  <%end %>
 <p>
+<%@datos_sitios = Hash.new((Trip.all.count)) %>
   <b>Name:</b>
   <%= @trip.name %>
 </p>
@@ -16,13 +17,25 @@
   <%= @trip.date %>
 </p>
 
+<p>
+  
+</p>
+
  <div id="map_canvas" style="width: 400px; height:400px "></div>
 
 
 <div id="site_list">
 <h1> Sitios a visitar </h1>
 <%= render(@trip) %>
+<% @datos_sitios.each do |sitio_eleg| %>
 
+  
+<%for i in 1..@datos_sitios.count do %>
+<p><%= @datos_sitios[i]["image_url"] %></p>
+<p><%= @datos_sitios[i]["latitud"] %></p>
+<p><%= @datos_sitios[i]["longitud"] %></p>
+<% end%>
+<% end%>
 <%= form_for(@selected, remote: true) do |f| %>
   <%= hidden_field_tag(:"selected[trip_id]", @trip.id) %>  
  <!-- modificación mía poruqe el hidden anterior no funcionaba -->  
