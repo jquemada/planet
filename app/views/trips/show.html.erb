@@ -16,6 +16,9 @@
   <%= @trip.date %>
 </p>
 
+ <div id="map_canvas" style="width: 400px; height:400px "></div>
+
+
 <div id="site_list">
 <h1> Sitios a visitar </h1>
 <%= render(@trip) %>
@@ -31,5 +34,36 @@
 
  <%end %>
 
+
+
+
+
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
 <%= link_to 'Back', trips_path %>
+
+
+<script type="text/javascript">
+//tenemos que recorrer los sitios del viaje y obtener sus valores
+//
+var latlng = new google.maps.LatLng(40.465625341114084, -3.6892175674438477);
+var myOptions = {
+    zoom: 5,                                            // Define scale
+    center: latlng,                                      // Define map center
+    mapTypeId: google.maps.MapTypeId.SATELLITE // tipo Roadmad, Satellite, Terrain, Hybrid
+  };
+// Load Google Map according to “myOptions” in Canvas identified by “map_canvas”
+var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+// Add marker in Google Maps “map” in position defined by “lating”
+//var marker = new google.maps.Marker({
+//                position: latlng,
+ //               map: map,
+ //               title:"You are here"
+  //          });
+
+ //cerramos función displayPosition(pos)
+ 
+// Error callback function
+  function errorFunction(pos) { alert('Error!'); }
+</script>
+
+
