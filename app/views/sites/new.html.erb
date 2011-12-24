@@ -3,3 +3,22 @@
 <%= render 'form' %>
 
 <%= link_to 'Back', sites_path %>
+<script type="text/javascript">
+// Determine support for Geolocation
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(displayPosition, errorFunction);
+  } else { alert('Geolocation is not supported in this browser.'); }
+// Success callback function
+  function displayPosition(pos) { 
+
+  var mylat = pos.coords.latitude;
+  var mylong = pos.coords.longitude;
+  var theElem_lat = document.getElementById('site_latitude');
+  theElem_lat.value = mylat;
+var theElem_long = document.getElementById('site_longitude');
+  theElem_long.value = mylong;
+
+ }
+// Error callback function
+  function errorFunction(pos) { alert('Error!'); }
+</script>

@@ -49,12 +49,18 @@
 <%= link_to 'Back', trips_path %>
 <% @lati=0%>
 <% @longi=0%>
+<p><%= @datos_sitios.count %></p>
+<% if @datos_sitios.count>=1 %>
 <%for i in 1..@datos_sitios.count do %>
 <p><%@lati= @lati+ @datos_sitios[i]["latitud"] %></p>
 <p><%@longi= @longi+ @datos_sitios[i]["longitud"] %></p>
 <% end%>
 <% @lati=@lati/@datos_sitios.count%>
 <% @longi=@longi/@datos_sitios.count%>
+<% else  %>
+<% @lati= 40.416691%>
+<% @longi= -3.700345 %>
+<% end%>
 <script type="text/javascript">
 //tenemos que recorrer los sitios del viaje y obtener sus valores
 //
@@ -67,19 +73,7 @@ var myOptions = {
   };
 // Load Google Map according to “myOptions” in Canvas identified by “map_canvas”
 var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-var i=1;
-var max=<%=@datos_sitios.count %>
-for (i=1;i<=<%=@datos_sitios.count %>;i++){
 
-latlng= new google.maps.LatLng(<%=@datos_sitios[i]["latitud"]%>, <%=@datos_sitios[i]["longitud"]%>);
-// Add marker in Google Maps “map” in position defined by “lating”
-
-var marker = new google.maps.Marker({
-                position: latlng,
-               map: map,
-               title:"You are here "+i
-          });
-}
  //cerramos función displayPosition(pos)
  
 // Error callback function
