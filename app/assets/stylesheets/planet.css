@@ -76,9 +76,9 @@ color: #222266;
          margin: 0;
 }
 #site_list .list_description dt {
-! color:          #244;
-! font-weight: bold;
-! font-size:      larger;
+ color:          #244;
+ font-weight: bold;
+font-size:      larger;
 }
 #site_list .list_description dd {
          margin: 0;

@@ -1,7 +1,7 @@
  <% if notice %>
 <p id="notice"><%= notice %></p>
  <%end %>
-<p>
+<p><!-- hash para pasar los datos del sitio para pintar-->
 <%@datos_sitios = Hash.new((Trip.all.count)) %>
   <b>Name:</b>
   <%= @trip.name %>
@@ -27,15 +27,9 @@
 <div id="site_list">
 <h1> Sitios a visitar </h1>
 <%= render(@trip) %>
-<% @datos_sitios.each do |sitio_eleg| %>
 
-  
-<%for i in 1..@datos_sitios.count do %>
-<p><%= @datos_sitios[i]["image_url"] %></p>
-<p><%= @datos_sitios[i]["latitud"] %></p>
-<p><%= @datos_sitios[i]["longitud"] %></p>
-<% end%>
-<% end%>
+
+
 <%= form_for(@selected, remote: true) do |f| %>
   <%= hidden_field_tag(:"selected[trip_id]", @trip.id) %>  
  <!-- modificación mía poruqe el hidden anterior no funcionaba -->  
@@ -53,26 +47,39 @@
 
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
 <%= link_to 'Back', trips_path %>
-
-
+<% @lati=0%>
+<% @longi=0%>
+<%for i in 1..@datos_sitios.count do %>
+<p><%@lati= @lati+ @datos_sitios[i]["latitud"] %></p>
+<p><%@longi= @longi+ @datos_sitios[i]["longitud"] %></p>
+<% end%>
+<% @lati=@lati/@datos_sitios.count%>
+<% @longi=@longi/@datos_sitios.count%>
 <script type="text/javascript">
 //tenemos que recorrer los sitios del viaje y obtener sus valores
 //
-var latlng = new google.maps.LatLng(40.465625341114084, -3.6892175674438477);
+
+var latlng = new google.maps.LatLng(<%=@lati%>, <%=@longi%>);
 var myOptions = {
-    zoom: 5,                                            // Define scale
+    zoom: 3,                                            // Define scale
     center: latlng,                                      // Define map center
     mapTypeId: google.maps.MapTypeId.SATELLITE // tipo Roadmad, Satellite, Terrain, Hybrid
   };
 // Load Google Map according to “myOptions” in Canvas identified by “map_canvas”
 var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-// Add marker in Google Maps “map” in position defined by “lating”
-//var marker = new google.maps.Marker({
-//                position: latlng,
- //               map: map,
- //               title:"You are here"
-  //          });
+var i=1;
+var max=<%=@datos_sitios.count %>
+for (i=1;i<=<%=@datos_sitios.count %>;i++){
 
+latlng= new google.maps.LatLng(<%=@datos_sitios[i]["latitud"]%>, <%=@datos_sitios[i]["longitud"]%>);
+// Add marker in Google Maps “map” in position defined by “lating”
+
+var marker = new google.maps.Marker({
+                position: latlng,
+               map: map,
+               title:"You are here "+i
+          });
+}
  //cerramos función displayPosition(pos)
  
 // Error callback function

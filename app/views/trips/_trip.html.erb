@@ -4,7 +4,7 @@
  <% trip.selected.order(:hour).each do |selected| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even')%>" >
 <td>
-  <%= link_to image_tag(selected.site.image_url, :class => 'list_image', :id =>'img_'+@val.to_s), selected.site %>
+  <%= link_to image_tag(selected.site.image.url, :class => 'list_image', :id =>'img_'+@val.to_s), selected.site %>
 </td>
  <%@coord_foto= {"image_url" => selected.site.image_url.to_s, "latitud" => selected.site.latitude,  "longitud" => selected.site.longitude } %>
   <%@datos_sitios[@val]=@coord_foto %>
