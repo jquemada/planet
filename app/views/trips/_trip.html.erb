@@ -1,13 +1,13 @@
 <div id="selected">
-<table>
 <% @val=1 %>
+<table>
+
  <% trip.selected.order(:hour).each do |selected| %>
   <tr class="<%= cycle('list_line_odd', 'list_line_even')%>" >
 <td>
   <%= link_to image_tag(selected.site.image.url, :class => 'list_image', :id =>'img_'+@val.to_s), selected.site %>
 </td>
- <%@coord_foto= {"image_url" => selected.site.image_url.to_s, "latitud" => selected.site.latitude,  "longitud" => selected.site.longitude } %>
-  <%@datos_sitios[@val]=@coord_foto %>
+ 
 <td class="list_description">
   <dl>      <!-- definition list -->
     <dt>    <!-- definition list name-->
@@ -26,6 +26,8 @@
                     :method => :delete %>
       </td>
     </tr>
+<%@coord_foto= {"image_url" => selected.site.image_url.to_s, "latitud" => selected.site.latitude,  "longitud" => selected.site.longitude } %>
+  <%@datos_sitios[@val]=@coord_foto %>
 <% @val=@val+1 %>
   <% end %>
   </table>

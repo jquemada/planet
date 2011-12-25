@@ -49,7 +49,6 @@
 <%= link_to 'Back', trips_path %>
 <% @lati=0%>
 <% @longi=0%>
-<p><%= @datos_sitios.count %></p>
 <% if @datos_sitios.count>=1 %>
 <%for i in 1..@datos_sitios.count do %>
 <p><%@lati= @lati+ @datos_sitios[i]["latitud"] %></p>

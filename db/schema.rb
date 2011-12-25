@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111220095041) do
+ActiveRecord::Schema.define(:version => 20111225133520) do
 
   create_table "selecteds", :force => true do |t|
     t.integer  "trip_id"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20111220095041) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "added_times"
   end
 
   create_table "trips", :force => true do |t|
