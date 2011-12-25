@@ -21,6 +21,8 @@
     <dd>    <!-- definition list text -->
         <%= truncate(strip_tags(site.description),
             :length => 80) %></dd>
+<dd>    <!-- added times  -->
+      <i>  <%= site.added_times.to_s %></i></dd>
   </dl>
 </td>
 

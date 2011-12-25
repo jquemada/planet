@@ -4,7 +4,7 @@
 
 <%= image_tag(@site.image.url, :class => 'site_image') %>
   
-<h3><%= @site.name %></h3>
+<h3><%= @site.name %> <b style='font-size:1em'><%= @site.added_times.to_s %></b> </h3>
                  <!-- sanitize limpia virus, ... -->
   <p><%=sanitize @site.description %></p>
   <div class="position">
