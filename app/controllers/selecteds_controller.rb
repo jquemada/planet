@@ -41,11 +41,13 @@ class SelectedsController < ApplicationController
   # POST /selecteds.json
   def create
     @selected = Selected.new(params[:selected])
-
+    @sitio = Site.find(params[:selected][:site_id])
+    @added_times = @sitio.added_times
+    @added_times = @added_times +1
     respond_to do |format|
-      if @selected.save
-        format.html { redirect_to @selected.trip, notice: 'Selected was successfully created.' }
-        format.js
+      if (@selected.save and @sitio.update_attributes(:added_times => @added_times))
+        format.html { redirect_to @selected.trip, notice: 'Selected was successfully created. And Added_times value : '+ @added_times }
+        format.js { redirect_to @selected.trip, notice: 'Selected was successfully created. And Added_times value : '+ @added_times.to_s }
         format.json { render json: @selected, status: :created, location: @selected }
       else
         format.html { render action: "new" }
@@ -74,7 +76,11 @@ class SelectedsController < ApplicationController
   # DELETE /selecteds/1.json
   def destroy
     @selected = Selected.find(params[:id])
+     @sitio = Site.find(@selected.site_id)
+    @added_times = @sitio.added_times
+    @added_times = @added_times-1
     @selected.destroy
+    @sitio.update_attributes(:added_times => @added_times)
 
     respond_to do |format|
       format.html { redirect_to @selected.trip }

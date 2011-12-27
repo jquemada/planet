@@ -41,7 +41,9 @@
 <%= f.label :image %><br />
     <%= f.file_field :image %>
   </div>
+<%= hidden_field_tag(:"site[added_times]", 0) %>  
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+

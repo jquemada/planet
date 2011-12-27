@@ -25,7 +25,7 @@ $("#trip_description").cleditor();
 	<div id="side">
 <%= link_to "Sitios", sites_path %> <br />
 <%= link_to "Tipos", types_path %> <br />
- <% @types= Type.all %>
+ <% @types= Type.find(:all, :order =>"name") %>
 	
 
 	<% for i in 0 ..@types.count-1 do %>
