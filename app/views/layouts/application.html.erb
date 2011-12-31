@@ -5,14 +5,12 @@
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+  <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<!--  <%= javascript_include_tag :defaults %>-->
 
-  <script type="text/javascript">
-    $(function() {
-      $( "#trip_description" ).cleditor();
-    });
-  </script>
 
-</head>
+  </head>
 <body id="planet"> 
   <div id="banner"> 
     <%= image_tag("logo3.png") %>
