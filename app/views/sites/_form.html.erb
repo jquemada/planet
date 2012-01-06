@@ -1,11 +1,14 @@
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <article>
+      <p>Finding your location: <span id="latitude">checking...</span><span id="longitude"/></p>
+    </article>
 <script>
 function success(position) {
   var lat = document.querySelector('#latitude');
   var lon = document.querySelector('#longitude');
   
-  lat.value = position.coords.latitude;
-  lon.value = position.coords.longitude;
+  lat.innerHTML = position.coords.latitude;
+  lon.innerHTML = position.coords.longitude;
 }
 function error(msg) {
   var s = document.querySelector('#status');
@@ -14,17 +17,15 @@ function error(msg) {
   
   // console.log(arguments);
 }
-function read(){
-	if (navigator.geolocation) {
-	  navigator.geolocation.getCurrentPosition(success, error);
-	} else {
-	  error('not supported');
-	}
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(success, error);
+} else {
+  error('not supported');
 }
 </script>
 
 
-<%= form_for(@site) do |f| %>
+<%= form_for @site, :html => { :multipart => true } do |f| %>
   <% if @site.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
@@ -49,24 +50,26 @@ function read(){
     <%= f.label :type_id %><br />
     <%= f.collection_select(:type_id, Type.find(:all, :order => :name), :id, :name) %>
   </div>
-  <div class="field">
+  <div class="field" id="latitude">
     <%= f.label :latitude %><br />
-    <%= f.text_field :latitude, id: "latitude" %>
+    <%= f.text_field :latitude %>
   </div>
-  <div class="field">
+  <div class="field" id="longitude">
     <%= f.label :longitude %><br />
-    <%= f.text_field :longitude, id: "longitude" %>
+    <%= f.text_field :longitude %>
   </div>
   <div class="field">
     <%= f.label :zoom %><br />
     <%= f.text_field :zoom %>
   </div>
-  <div class="field">
+<!--  <div class="field">
     <%= f.label :image_url %><br />
     <%= f.text_field :image_url %>
-  </div>
+  </div> -->
+  <div class="field">
+  Imagen del sitio: <br/>
+  <%= f.file_field :imagen, label: "Imagen" %>
   <div class="actions">
     <%= f.submit %>
-    <%= button_tag "Read coordinates", onclick: "read()", type: "button" %>
   </div>
 <% end %>

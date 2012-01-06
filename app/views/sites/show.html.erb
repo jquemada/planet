@@ -34,7 +34,8 @@
  
   <h1><%= @site.type.name if @site.type %></h1> 
 
-  <%= image_tag(@site.image_url, :class => 'site_image') %>
+  <% url = (@site.image_url == "") ?@site.imagen.url : @site.image_url %>
+  <%= image_tag(url, :class => 'site_image') %>
 
   <h3><%= @site.name %></h3> 
 

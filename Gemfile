@@ -18,7 +18,7 @@ end
 
 gem 'jquery-rails'
 gem 'cleditor_rails'
-
+gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
