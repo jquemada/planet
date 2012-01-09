@@ -19,3 +19,4 @@
 
 #Ignorar archivos temporales de kate
 *~
+/nbproject/private/

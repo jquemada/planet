@@ -1,5 +1,16 @@
 
 <div id="selected">
+  <script type="text/javascript">
+    latlongs=new Array();
+    siteNames=new Array();
+    i=0;
+    <%  trip.selecteds.order(:hour).each do |selected| %>
+      latlongs[i]=new google.maps.LatLng(<%=selected.site.latitude%>,<%=selected.site.longitude%>);
+      siteNames[i]='<%=selected.site.name%>';
+      i++;
+    <%end%>
+    //colocaChinchetas();
+  </script>
   <table> 
    <%  trip.selecteds.order(:hour).each do |selected| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>"> 

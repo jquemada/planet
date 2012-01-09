@@ -1,3 +1,28 @@
+<script type="text/javascript">
+  function nuevaChinchetaDesdeForm(){
+    selectedId=$("#selected_site_id").val();
+    laUrl='<%= site_url('pongasuidaqui') %>'.replace('pongasuidaqui', selectedId).concat('.json');
+    //alert('Vamos alla, site_id: '+selectedId+ ' url: '+ laUrl);
+    $.ajax({
+      url: laUrl,
+      dataType: 'json',
+      data: null,
+      success: function (data){
+        //alert('Lo hemos bajado');
+        //alert('Latitud: '+ data.latitude + ' Longitud: ' + data.longitude);
+        latlongs[latlongs.length]=new google.maps.LatLng(data.latitude, data.longitude);
+        siteNames[siteNames.length]=data.name;
+        var marker = new google.maps.Marker({
+          position: latlongs[latlongs.length-1],
+          map: map,
+          title:siteNames[siteNames.length-1]
+        });
+      }
+    });
+  }
+</script>
+  
+
 <% if notice %>
   <p id="notice"><%= notice %></p>
 <% end %>
@@ -24,7 +49,7 @@
 
   <%= render(@trip) %>
 
-  <%= form_for(@selected, remote: true) do |f| %>
+  <%= form_for(@selected, remote: true, :html => {:onsubmit => "nuevaChinchetaDesdeForm();"}) do |f| %>
   
     <%= f.number_field :trip_id, :value => @trip.id, :hidden => true %>
     <%= f.collection_select(:site_id, 
@@ -37,6 +62,10 @@
 </div>
 
 <br />
+
+<h2>Mapa:</h2> <br />
+
+<div id="map_canvas"></div>
 
 <%= link_to 'Edit', edit_trip_path(@trip) %> 
 <%= link_to 'Back', trips_path %>

@@ -162,3 +162,8 @@
   width: 24px;
   height: 24px;
 }
+
+#map_canvas {
+  width: 400px;
+  height: 400px;
+}

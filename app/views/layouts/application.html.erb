@@ -2,6 +2,11 @@
 <html> 
 <head> 
   <title>Planet</title>
+  <script src="http://maps.google.com/maps/api/js?sensor=false">
+  // Carga la librería de Google Maps
+  // Doc de Google Maps API: http://code.google.com/apis/maps/documentation/javascript/
+  </script>
+
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -11,6 +16,9 @@
       $( "#trip_description" ).cleditor();
     });
   </script>
+
+
+
 
 </head>
 <body id="planet"> 
@@ -32,5 +40,7 @@
       <%= yield %>
     </div> 
   </div> 
+
+
 </body> 
 </html> 

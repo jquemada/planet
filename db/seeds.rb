@@ -23,8 +23,8 @@ Site.create(
             name: 'Pedriza',
             description: 'Magnifico valle al norte de Madrid en el Macizo Central',
             type_id: 2,
-            latitude: 40,
-            longitude: 40,
+            latitude: 40.751244,
+            longitude: -3.893069,
             zoom: 10,
             image_url: 'pedriza.png')
 
@@ -32,8 +32,8 @@ Site.create(
             name: 'Catedral de Florencia',
             description: 'Catedral de la ciudad de Florencia con la que se inicia el Renacimiento',
             type_id: 1,
-            latitude: 50,
-            longitude: 35,
+            latitude: 43.783333,
+            longitude: 11.25,
             zoom: 10,
             image_url: 'florencia.png')
 
@@ -41,8 +41,8 @@ Site.create(
             name: 'Jardin de Lineo',
             description: 'Jardin de la ciudad sueca de Uppsala donde el famoso naturalista enia su coleccion de plantas',
             type_id: 2,
-            latitude: 80,
-            longitude: 45,
+            latitude: 59.862222,
+            longitude: 17.633889,
             zoom: 10,
             image_url: 'arbol1.png')
 
@@ -50,8 +50,8 @@ Site.create(
             name: 'Reichstag',
             description: 'Parlamento aleman en la ciudad de Berlin',
             type_id: 1,
-            latitude: 50,
-            longitude: 50,
+            latitude: 52.5186,
+            longitude: 13.376,
             zoom: 10,
             image_url: 'reichstag.png')
 
@@ -59,8 +59,8 @@ Site.create(
             name: 'Pergamo',
             description: 'Puerta del mercado de la antigua ciudad griega de Pergamo del museo arquelogico de Berlin',
             type_id: 3,
-            latitude: 50,
-            longitude: 50,
+            latitude: 52.521111,
+            longitude: 13.396667,
             zoom: 10,
             image_url: 'pergamo.png')
 
