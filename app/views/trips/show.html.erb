@@ -23,11 +23,18 @@
 		var mylongt<%= site.id %> = <%= site.longitude %>;
 
                 var latlngt<%= site.id %> = new google.maps.LatLng(mylatt<%= site.id %>, mylongt<%= site.id %>);
-                var marker<%= site.id %>  = new google.maps.Marker({
+		var image = new google.maps.MarkerImage(
+		  "<%= image_path((site.image_url == "") ?site.imagen.url : site.image_url) %>",
+		  new google.maps.Size(80,70),
+ 		  new google.maps.Point(0,0),
+		  new google.maps.Point(20,35),
+		  new google.maps.Size(80,70)
+		);
+		var marker<%= site.id %>  = new google.maps.Marker({
                 position: latlngt<%= site.id %>,
                 map: map,
                 title: title<%= site.id %>,
-		icon: "<%= image_path(site.image_url) %>" 
+		icon: image
                 });
 	<% end %>
         }
@@ -88,6 +95,3 @@
 <%= link_to 'Back', trips_path %>
 
 <p />
-
-
-

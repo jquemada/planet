@@ -43,15 +43,18 @@
 
   <div class="position"> 
     <span>
-      <b>Latitude:</b>
+      <b>Latitud:</b>
       <%= @site.latitude %>
     </span>
  
     <span>
-       <b>Longitude:</b>
+       <b>Longitud:</b>
        <%= @site.longitude %>
     </span>
   </div> 
+ <div>
+     Añadido <%= Selected.where(site_id: @site.id).count() %> veces a un viaje.</dd>
+ </div>
 </div> 
 
 <p />

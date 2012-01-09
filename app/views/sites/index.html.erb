@@ -13,8 +13,9 @@
       <td class="list_description"> 
         <dl> 
           <dt><%= link_to site.name, site %></dt> 
-          <dd><%= truncate(strip_tags(site.description),
-                 :length => 80) %></dd>
+          <dd><div><%= truncate(strip_tags(site.description),
+                 :length => 80) %></div>
+	       Añadido <%= Selected.where(site_id: site.id).count() %> veces a un viaje.</dd>
         </dl> 
       </td>
  
