@@ -46,8 +46,8 @@ class SelectedsController < ApplicationController
     @added_times = @added_times +1
     respond_to do |format|
       if (@selected.save and @sitio.update_attributes(:added_times => @added_times))
-        format.html { redirect_to @selected.trip, notice: 'Selected was successfully created. And Added_times value : '+ @added_times.to_s }
-        format.js { redirect_to @selected.trip, notice: 'Selected was successfully created. And Added_times value : '+ @added_times.to_s }
+        format.html { redirect_to @selected.trip, notice: 'Site added successfully. ' }
+        format.js { redirect_to @selected.trip, notice: 'Site added successfully ' }
         format.json { render json: @selected, status: :created, location: @selected }
       else
         format.html { render action: "new" }

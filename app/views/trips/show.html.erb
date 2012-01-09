@@ -50,10 +50,10 @@
 <%= link_to 'Back', trips_path %>
 
 <%for i in 1..@datos_sitios.count do %>
-<p id='name_<%=i%>' style='visibility:hidden'><%=@nombre= @datos_sitios[i]["nombre"] %></p>
-<p id='lati_<%=i%>' style='visibility:hidden'><%=@lati= @datos_sitios[i]["latitud"] %></p>
-<p id='long_<%=i%>' style='visibility:hidden'><%=@longi=@datos_sitios[i]["longitud"] %></p>
-<p id='imag_<%=i%>' style='visibility:hidden'><%=@image_url= @datos_sitios[i]["image_url"] %></p>
+<span id='name_<%=i%>' style='visibility:hidden'><%=@nombre= @datos_sitios[i]["nombre"] %></span>
+<span id='lati_<%=i%>' style='visibility:hidden'><%=@lati= @datos_sitios[i]["latitud"] %></span>
+<span id='long_<%=i%>' style='visibility:hidden'><%=@longi=@datos_sitios[i]["longitud"] %></span>
+<span id='imag_<%=i%>' style='visibility:hidden'><%=@image_url= @datos_sitios[i]["image_url"] %></span>
 <% end%>
 
 <% @lati=0%>
@@ -61,10 +61,9 @@
 <% if @datos_sitios.count>=1 %>
 <%for i in 1..@datos_sitios.count do %>
 
-<p><%@lati= @lati+ @datos_sitios[i]["latitud"] %></p>
-<p><%@longi= @longi+ @datos_sitios[i]["longitud"] %></p>
+<%@lati= @lati+ @datos_sitios[i]["latitud"] %>
+<%@longi= @longi+ @datos_sitios[i]["longitud"] %>
 <% end%>
-<!--<p>datos_sitios.count vale: <%=@datos_sitios.count %></p>-->
 
 <% @lati=@lati/@datos_sitios.count%>
 <% @longi=@longi/@datos_sitios.count%>
