@@ -26,7 +26,7 @@
                     :method => :delete %>
       </td>
     </tr>
-<%@coord_foto= {"image_url" => selected.site.image_url.to_s, "latitud" => selected.site.latitude,  "longitud" => selected.site.longitude } %>
+<%@coord_foto= {"image_url" => selected.site.image.url.to_s, "latitud" => selected.site.latitude,  "longitud" => selected.site.longitude, "nombre" => selected.site.name } %>
   <%@datos_sitios[@val]=@coord_foto %>
 <% @val=@val+1 %>
   <% end %>

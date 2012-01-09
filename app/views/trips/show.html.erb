@@ -20,8 +20,11 @@
 <p>
   
 </p>
+<div id="map_canvas" style="width: 700px; height:600px "></div>
 
- <div id="map_canvas" style="width: 400px; height:400px "></div>
+
+
+
 
 
 <div id="site_list">
@@ -30,7 +33,8 @@
 
 
 
-<%= form_for(@selected, remote: true) do |f| %>
+
+<%= form_for(@selected) do |f| %>
   <%= hidden_field_tag(:"selected[trip_id]", @trip.id) %>  
  <!-- modificación mía poruqe el hidden anterior no funcionaba -->  
  <%= f.collection_select(:site_id, Site.all, :id, :name) %>
@@ -42,18 +46,26 @@
  <%end %>
 
 
-
-
-
 <%= link_to 'Edit', edit_trip_path(@trip) %> |
 <%= link_to 'Back', trips_path %>
+
+<%for i in 1..@datos_sitios.count do %>
+<p id='name_<%=i%>' style='visibility:hidden'><%=@nombre= @datos_sitios[i]["nombre"] %></p>
+<p id='lati_<%=i%>' style='visibility:hidden'><%=@lati= @datos_sitios[i]["latitud"] %></p>
+<p id='long_<%=i%>' style='visibility:hidden'><%=@longi=@datos_sitios[i]["longitud"] %></p>
+<p id='imag_<%=i%>' style='visibility:hidden'><%=@image_url= @datos_sitios[i]["image_url"] %></p>
+<% end%>
+
 <% @lati=0%>
 <% @longi=0%>
 <% if @datos_sitios.count>=1 %>
 <%for i in 1..@datos_sitios.count do %>
+
 <p><%@lati= @lati+ @datos_sitios[i]["latitud"] %></p>
 <p><%@longi= @longi+ @datos_sitios[i]["longitud"] %></p>
 <% end%>
+<!--<p>datos_sitios.count vale: <%=@datos_sitios.count %></p>-->
+
 <% @lati=@lati/@datos_sitios.count%>
 <% @longi=@longi/@datos_sitios.count%>
 <% else  %>
@@ -63,20 +75,66 @@
 <script type="text/javascript">
 //tenemos que recorrer los sitios del viaje y obtener sus valores
 //
-
 var latlng = new google.maps.LatLng(<%=@lati%>, <%=@longi%>);
 var myOptions = {
-    zoom: 3,                                            // Define scale
+    zoom: 4,                                            // Define scale
     center: latlng,                                      // Define map center
     mapTypeId: google.maps.MapTypeId.SATELLITE // tipo Roadmad, Satellite, Terrain, Hybrid
   };
 // Load Google Map according to “myOptions” in Canvas identified by “map_canvas”
+
 var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
- //cerramos función displayPosition(pos)
+    var n=1; //se usa para .... ?? 
  
-// Error callback function
-  function errorFunction(pos) { alert('Error!'); }
+
+    var place = new Array();
+	var image = new Array();
+
+<% @valor=1 %>
+var j =1;
+
+for (j=1 ; j<<%=@datos_sitios.count+1 %>; j++ ){
+
+	var name = document.getElementById("name_"+j).innerHTML
+	var lati = document.getElementById("lati_"+j).innerHTML
+	var long = document.getElementById("long_"+j).innerHTML
+	//var imag = document.getElementById("long_"+j).innerHTML
+    place[name] = new google.maps.LatLng(lati , long);
+	image[name] = document.getElementById("imag_"+j).innerHTML;
+	//document.write( "name: "+ name + " y su latitud y longitud :" + place[name]+ " y su imagen es: " + image[name] + "<br />");
+      
+}
+
+var markers = new Array();
+var icons = new Array();
+var c = 0;
+var iconSize = new google.maps.Size(40, 40);
+for(var i in place){
+	
+	c++;
+	//var icon = new google.maps.MarkerImage("http://domain/path/image.png", null, null, null, new google.maps.Size(64, 64));
+	icons[c] = new google.maps.MarkerImage(image[i], null, null, null, iconSize);
+	//alert("Hemos pinchado en <br/><strong>" + i + "</strong><br/>Latitud: <br/>Longitud: ");
+    markers[c] = new google.maps.Marker({
+        position: place[i]
+        , map: map
+        , title: i
+        //, icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/red/marker' + c + '.png'
+		, icon: icons[c]
+    });
+	/*
+    google.maps.event.addListener(markers[c], 'click', function(){
+        var popup = new google.maps.InfoWindow();
+        var note = 'Wohoooo, salió el InfoWindow cuando pulsé el marcador y en el lugar: ' + i
+           + ', pero ¿por qué todos se muestran en ' + i + '?';
+        popup.setContent(note);
+        popup.open(map, markers[c]);
+    });
+	*/
+}
 </script>
+
+
 
 
