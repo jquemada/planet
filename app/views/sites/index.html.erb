@@ -13,7 +13,10 @@
         <dl> 
           <dt><%= link_to site.name, site %></dt> 
           <dd><%= truncate(strip_tags(site.description),
-                 :length => 80) %></dd>
+                 :length => 80) %>
+            <p/>
+            Ha sido seleccionado <%= Selected.where('site_id=?',site.id).count %> veces en alg&uacute;n viaje.
+          </dd>
         </dl> 
       </td>
  

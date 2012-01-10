@@ -19,6 +19,8 @@
        <%= @site.longitude %>
     </span>
   </div> 
+  <p/>
+  Ha sido seleccionado <%= Selected.where('site_id=?',@site.id).count %> veces en alg&uacute;n viaje.
 </div> 
 
 <p />

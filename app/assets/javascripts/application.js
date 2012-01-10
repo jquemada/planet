@@ -46,7 +46,9 @@ function displayPosition (){
 //     map: map,
 //     title:"Wooolaaass"
 //   });
-  colocaChinchetas();
+//alert(createMarker(32, 32, siteImages[0]));
+
+  //colocaChinchetas();
  
 }
 
@@ -55,15 +57,19 @@ function colocaChinchetas(){
   //alert('auch');
   
    for(i=0;i<latlongs.length;i++){
+       
       var marker = new google.maps.Marker({
 	position: latlongs[i],
 	map: map,
-	title:siteNames[i]
+	title:siteNames[i],
+        icon: imagenesCanvasArray[i].toDataURL()
       });
+      
     }
+    //window.open(imagenesCanvasArray[0].toDataURL());
 }
 
-function errorPos(pos){ alert('Error');}
+function errorPos(pos){alert('Error');}
 
 //Colocar posicion
 function colocaPos(pos){
@@ -74,6 +80,7 @@ function colocaPos(pos){
 
 //Ponemos valores por defecto y segun posicion, si es que debemos.
 $(function() {
+    
   if(($('.new_site #site_zoom').size()==0)){ //Averigua si estamos en new_site
 	return; //Si no estamos en new_site, no se hace nada
   } 
@@ -87,3 +94,57 @@ $(function() {
 });
 
 $('#new_selected').submit(function(){colocaChinchetas();});
+
+
+function createMarker(width, height, img) {
+
+  var canvas, context;
+  
+  radius=4;
+  
+  canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+
+  context = canvas.getContext("2d");
+
+  //context.clearRect(0,0,width,height);
+
+  // border is black
+//  context.strokeStyle = "rgba(0,0,0,1)";
+//
+//  context.beginPath();
+//  context.moveTo(radius, 0);
+//  context.lineTo(width - radius, 0);
+//  context.quadraticCurveTo(width, 0, width, radius);
+//  context.lineTo(width, height - radius);
+//  context.quadraticCurveTo(width, height, width - radius, height);
+//  context.lineTo(radius, height);
+//  context.quadraticCurveTo(0, height, 0, height - radius);
+//  context.lineTo(0, radius);
+//  context.quadraticCurveTo(0, 0, radius, 0);
+//  context.closePath();
+//  
+//  var img = new Image();
+//  img.src=imageURL;
+// //Esperamos imagen
+      
+  
+ 
+  
+  
+  
+  
+  context.drawImage(img, '1px', '1px', '31px', '31px');
+  
+  //context.fill();
+  
+  //context.stroke();
+
+  return canvas.toDataURL();
+
+}
+
+//$(document).ready(function(){
+//  alert(createMarker(32,32,'http://jonkepa.files.wordpress.com/2011/03/avioncito.jpg'));
+//});

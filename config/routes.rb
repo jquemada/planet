@@ -13,6 +13,10 @@ Planet::Application.routes.draw do
   resources :selecteds
 
   resources :trips
+  
+  resources :trips do
+    resources :selecteds
+  end
 
   resources :sites
     
