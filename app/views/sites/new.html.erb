@@ -1,4 +1,18 @@
+<script type="text/javascript">      <!-- script anadido para detectar coordenadas automaticamente --> 
+	if (navigator.geolocation) { //Check if browser supports W3C Geolocation API
+		navigator.geolocation.getCurrentPosition(successFunction, errorFunction);
+	}
+	function successFunction(position) {
+		document.getElementById("site_longitude").value = position.coords.longitude
+		document.getElementById("site_latitude").value = position.coords.latitude;
+	}
+	function errorFunction(position) { alert('Error!'); }
+</script>
+
 <h1>New site</h1>
+
+<% @site.zoom = 10 %> <!-- linea anadida para poner valor inicial al zoom del sitio -->
+<% @site.visits = 0 %>
 
 <%= render 'form' %>
 

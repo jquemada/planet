@@ -23,23 +23,37 @@
     <%= f.label :type_id %><br />
     <%= f.collection_select(:type_id, Type.find(:all, :order => :name), :id, :name) %>
   </div>
+  Location
+  <div id="sitesmap_canvas" style="width:350px; height:200px"></div>
+
   <div class="field">
-    <%= f.label :latitude %><br />
-    <%= f.text_field :latitude %>
+    <%= f.label :latitude, :hidden => true %><br />
+    <%= f.text_field :latitude, :hidden => true %>
   </div>
   <div class="field">
-    <%= f.label :longitude %><br />
-    <%= f.text_field :longitude %>
+    <%= f.label :longitude, :hidden => true %>
+    <%= f.text_field :longitude, :hidden => true %>
   </div>
   <div class="field">
-    <%= f.label :zoom %><br />
-    <%= f.text_field :zoom %>
+    <%= f.label :zoom, :hidden => true %>
+    <%= f.text_field :zoom, :hidden => true %>
   </div>
+
   <div class="field">
     <%= f.label :image_url %><br />
     <%= f.text_field :image_url %>
   </div>
+  
+  <div class="field">
+    <%= f.label :visits, :hidden => true %>
+    <%= f.text_field :visits, :hidden => true %>
+  </div>
+  
+<script type="text/javascript">
+    sitesmap();
+</script>
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>

@@ -18,6 +18,15 @@
 </p>
 
 
+<b>Locations:</b>
+  <div id="travelmap_canvas" style="width:100%; height:400px"></div>
+	
+<script type="text/javascript">
+    travelmap();
+    setMarkers(<%= getData.to_json.html_safe %>);
+</script>
+	
+
 <div id="site_list">
 
   <h1>Sitios a visitar</h1>
@@ -33,6 +42,7 @@
                             :name) %>
     <%= f.select(:hour, Array.new(24, 0).fill {|i| [(i.to_s + 'H'), i]}) %>
     <%= f.submit "Añadir sitio" %>
+
   <% end %>
 </div>
 
@@ -42,6 +52,5 @@
 <%= link_to 'Back', trips_path %>
 
 <p />
-
 
 

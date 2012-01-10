@@ -1,4 +1,4 @@
 class Site < ActiveRecord::Base
     belongs_to :type
-	belongs_to :viaje
+    has_many   :selected
 end

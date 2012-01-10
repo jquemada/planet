@@ -20,10 +20,9 @@
       <td class="list_actions"> 
         <%= link_to 'Show', site %><br/>
         <%= link_to 'Edit', edit_site_path(site) %><br/>
-        <%= link_to 'Destroy', site,
+        <%= link_to 'Destroy', site, 
                     :confirm => 'Are you sure?',
-                    :method => :delete %><br/>
-		<%= link_to 'Incluir', '/viajes/new/'+site.id.to_s,remote: true, class: 'add_viaje' %><br/>
+                    :method => :delete %>
       </td> 
     </tr> 
   <% end %>

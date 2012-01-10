@@ -41,7 +41,10 @@ class SelectedsController < ApplicationController
   # POST /selecteds.json
   def create
     @selected = Selected.new(params[:selected])
+	@site = Site.find(@selected.site_id)
+	@site.increment!(:visits)
 
+	
     respond_to do |format|
       if @selected.save
         format.html { redirect_to @selected.trip, notice: 'Selected was successfully created.' }
@@ -74,12 +77,13 @@ class SelectedsController < ApplicationController
   # DELETE /selecteds/1.json
   def destroy
     @selected = Selected.find(params[:id])
+	@site = Site.find(@selected.site_id)
+	@site.decrement!(:visits)
     @selected.destroy
 
     respond_to do |format|
-      format.html { redirect_to @selected.trip }
-#     format.html { redirect_to selecteds_url }
-      format.json { head :ok }
+      format.html { redirect_to @selected.trip, notice: 'Selected was successfully destroyed.' }
+        format.json { render json: @selected, status: :created, location: @selected }
     end
   end
 end
