@@ -8,17 +8,6 @@
   </script>
   
   <script language="javascript">
-    function cargaContextoCanvas(idCanvas){
-            var elemento = document.getElementById(idCanvas);
-            
-            if(elemento && elemento.getContext){
-                    var contexto = elemento.getContext('2d');
-                    if(contexto){
-                            return contexto;
-                    }
-            }
-            return FALSE;
-    }
 
     function cargaContextoCanvasInventado(width,height){
       var elemento = document.createElement('canvas');
@@ -42,7 +31,6 @@
           var ctx = cargaContextoCanvasInventado(width,height);
           if(ctx){
             radius=4;
-            
             //Creo una imagen conun objeto Image de Javascript
             var img = new Image();
             //indico la URL de la imagen
@@ -70,8 +58,6 @@
                     } else {
                       colocaNuevaChinchetaDelFinal();
                     }
-                    //window.open(elCanvas.toDataURL(),'Imagen');
-
             }
             return elCanvas;
        }
@@ -91,9 +77,6 @@
       $( "#trip_description" ).cleditor();
     });
   </script>
-
-
-
 
 </head>
 <body id="planet"> 
@@ -115,7 +98,6 @@
       <%= yield %>
     </div> 
   </div> 
-
 
 </body> 
 </html> 

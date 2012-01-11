@@ -1,63 +1,28 @@
 <script type="text/javascript">
   window.onload=function(){
-    //generaImagenConCanvas('<%=image_path('pedriza.png')  %>');
     imagenesCanvasArray=new Array();
-    //lasIDsdeLasImagenesCanvasArray=new Array();
     i=0;
     <%@trip.selecteds.order(:hour).each do |selected|%>
       imagenesCanvasArray[i]=generaImagenConCanvas('<%=image_path(selected.site.image.url)%>',true);
-      //lasIDsdeLasImagenesCanvasArray[i]=<%=selected.site.id %>;
       i++;
-    <%end%>
-        //colocaChinchetas();      
+    <%end%>    
   }
   
     
-
- 
   function nuevaChinchetaDesdeForm(){
     selectedId=$("#selected_site_id").val();
     laUrl='<%= site_url('pongasuidaqui') %>'.replace('pongasuidaqui', selectedId).concat('.json');
-    //alert('Vamos alla, site_id: '+selectedId+ ' url: '+ laUrl);
     $.ajax({
       url: laUrl,
       dataType: 'json',
       data: null,
       success: function (data){
-        //alert('Lo hemos bajado');
-        //alert('Latitud: '+ data.latitude + ' Longitud: ' + data.longitude);
         latlongs[latlongs.length]=new google.maps.LatLng(data.latitude, data.longitude);
         siteNames[siteNames.length]=data.name;
         imagenesCanvasArray[imagenesCanvasArray.length]=generaImagenConCanvas('/system/images/'+data.id+'/original/'+data.image_file_name,false);
       }
     });
   }
-  
-  <%#*function compruebaYColoca(k) {%>
-   <%#*// alert('Compruebo imagen '+k);%>
-    <%#*sitesImagesLoaded[k]=true;%>
-    <%#*colocar=true;%>
-    <%#*for (n=0;n<sitesImagesLoaded.length;n++){%>
-      <%#*if(!sitesImagesLoaded[n]){%>
-        <%#*colocar=false;%>
-        <%#*break;%>
-      <%#*}%>
-    <%#*}%>
-    
-    <%#*if(colocar){%>
-      <%#*//alert('Chinchetitas!!!!!!');%>
-      <%#*//colocaChinchetas();%>
-      
-    <%#*}%>
-  <%#*}%>
-  
-//  siteImages = new Array();
-//  siteIDs = new Array();
-//  sitesImagesLoaded = new Array(<%=@trip.selecteds.length%>);
-//  j=0;
-  
-    
- 
 </script>
   
 
