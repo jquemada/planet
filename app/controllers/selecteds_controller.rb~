@@ -6,7 +6,7 @@ class SelectedsController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @selecteds }
+      format.json { render json=> @selecteds }
     end
   end
 
@@ -17,7 +17,7 @@ class SelectedsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @selected }
+      format.json { render json=> @selected }
     end
   end
 
@@ -28,7 +28,7 @@ class SelectedsController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @selected }
+      format.json { render json=> @selected }
     end
   end
 
@@ -41,15 +41,18 @@ class SelectedsController < ApplicationController
   # POST /selecteds.json
   def create
     @selected = Selected.new(params[:selected])
-
+   # @sitio = Site.find(params[:selected][:site_id])
+   # @usado = @sitio.usado +1
     respond_to do |format|
-      if @selected.save
-        format.html { redirect_to @selected.trip, notice: 'Selected was successfully created.' }
+
+#and @sitio.update_attributes(:usado => @usado)
+      if ( @selected.save )
+        format.html { redirect_to @selected.trip, notice=> 'Selected was successfully created.' }
         format.js
-        format.json { render json: @selected, status: :created, location: @selected }
+        format.json { render json=> @selected, status=> :created, :location=> @selected }
       else
-        format.html { render action: "new" }
-        format.json { render json: @selected.errors, status: :unprocessable_entity }
+        format.html { render action=> "new" }
+        format.json { render json=> @selected.errors, status=> :unprocessable_entity }
       end
     end
   end
@@ -61,11 +64,11 @@ class SelectedsController < ApplicationController
 
     respond_to do |format|
       if @selected.update_attributes(params[:selected])
-        format.html { redirect_to @selected.trip    , notice: 'Selected was successfully updated.' }
+        format.html { redirect_to @selected.trip    , notice=> 'Selected was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @selected.errors, status: :unprocessable_entity }
+        format.html { render action=> "edit" }
+        format.json { render json=> @selected.errors, status=> :unprocessable_entity }
       end
     end
   end
@@ -74,7 +77,11 @@ class SelectedsController < ApplicationController
   # DELETE /selecteds/1.json
   def destroy
     @selected = Selected.find(params[:id])
+   # @sitio = Site.find(params[:selected][:site_id])
+   # @sitio = Site.find(params[:id])
+    #@usado = @sitio.usado-1
     @selected.destroy
+   # @sitio.update_attributes(:usado => @usado)
 
     respond_to do |format|
       format.html { redirect_to @selected.trip }

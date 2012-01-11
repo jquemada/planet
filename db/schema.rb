@@ -24,9 +24,9 @@ ActiveRecord::Schema.define(:version => 20111211202305) do
     t.string   "name"
     t.text     "description"
     t.integer  "type_id"
-    t.decimal  "latitude",    :precision => 8, :scale => 6
-    t.decimal  "longitude",   :precision => 8, :scale => 6
-    t.decimal  "zoom",        :precision => 8, :scale => 6
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.decimal  "zoom"
     t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"

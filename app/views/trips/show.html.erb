@@ -1,3 +1,5 @@
+<%@sitios = Hash.new((Trip.all.count)) %>
+
 <% if notice %>
   <p id="notice"><%= notice %></p>
 <% end %>
@@ -17,6 +19,7 @@
   <%= @trip.date %>
 </p>
 
+<div id="map_canvas" style="width: 700px; height:600px "></div>
 
 <div id="site_list">
 
@@ -42,6 +45,78 @@
 <%= link_to 'Back', trips_path %>
 
 <p />
+
+
+
+<%for i in 1..@sitios.count do %>
+	<span id='name_<%=i%>' style='visibility:hidden'><%=@nombre= @sitios[i]["nombre"] %></span>
+	<span id='lati_<%=i%>' style='visibility:hidden'><%=@latitud= @sitios[i]["latitud"] %></span>
+	<span id='long_<%=i%>' style='visibility:hidden'><%=@longitud=@sitios[i]["longitud"] %></span>
+	<span id='imag_<%=i%>' style='visibility:hidden'><%=@image_url= @sitios[i]["image_url"] %></span>
+<% end%>
+
+
+<!-- Posicionamos el mapa, calculando adecuadamente los valores, en función del número de sitios -->
+<% @latitud=0%>
+<% @longitud=0%>
+
+<% if @sitios.count>=1 %>
+	<%for i in 1..@sitios.count do %>
+		<%@latitud= @latitud+ @sitios[i]["latitud"] %>
+		<%@longitud= @longitud+ @sitios[i]["longitud"] %>
+	<% end%>
+
+	<% @latitud=@latitud/@sitios.count%>
+	<% @longitud=@longitud/@sitios.count%>
+<% else  %>
+	<% @latitud= 40.416691%>
+	<% @longitud= -3.700345 %>
+<% end%>
+
+<script type="text/javascript">
+
+// Cargamos un objeto de posicionamiento y configuración para el mapa
+var myOptions = {
+    zoom: 2,                                            // Define scale
+    center: new google.maps.LatLng(<%=@latitud%>, <%=@longitud%>),    // Define map center
+    mapTypeId: google.maps.MapTypeId.ROADMAP // tipo Roadmad, Satellite, Terrain, Hybrid
+  };
+
+var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+var place = new Array();
+var image = new Array();
+
+<% @valor=1 %>
+
+var j;
+for (j=1 ; j<<%=@sitios.count+1 %>; j++ ){
+
+	var name = $("#name_"+j).html();
+	var lati = $("#lati_"+j).html();
+	var long = $("#long_"+j).html();
+    	place[name] = new google.maps.LatLng(lati , long);
+	image[name] = $("#imag_"+j).html();
+}
+
+var markers = new Array();
+var icons = new Array();
+var c = 0;
+var iconSize = new google.maps.Size(40, 40);
+for(var i in place){
+	c++;
+	icons[c] = new google.maps.MarkerImage(image[i], null, null, null, iconSize);
+   	markers[c] = new google.maps.Marker({
+		position: place[i]
+		, map: map
+		, title: i
+		, icon: icons[c]
+	    });
+}
+</script>
+
+
+
 
 
 

@@ -29,8 +29,17 @@
 
   <h1>Sitios a visitar</h1>
 
-  <%= render(@trip) %>
 
+<%= form_for(@selected, :remote=> true) do |s| %>
+  
+    <%= s.number_field :trip_id, :value => @trip.id, :hidden => true %>
+    <%= s.collection_select(:site_id, 
+                            Site.all,
+                            :id, 
+                            :name) %>
+    <%= s.select(:hour, Array.new(24, 0).fill {|i| [(i.to_s + 'H'), i]}) %>
+    <%= s.submit "Añadir sitio" %>
+  <% end %>
 </div>
 
 

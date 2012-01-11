@@ -29,7 +29,7 @@
 
   <h1>Sitios a visitar</h1>
 
-  <%= render(@trip) %>
+
 <%= form_for(@selected, :remote=> true) do |s| %>
   
     <%= s.number_field :trip_id, :value => @trip.id, :hidden => true %>

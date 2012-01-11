@@ -4,7 +4,7 @@
 
   <%= image_tag(@site.image_url, :class => 'site_image') %>
 
-  <h3><%= @site.name %></h3> 
+  <h3><%= @site.name %> En&nbsp;<%= @site.usado.to_s%>&nbsp;viajes.</h3> 
 
   <p><%=sanitize @site.description %></p>
 
@@ -20,7 +20,7 @@
     </span>
   </div> 
 <div id="site_list">
-  <%= render(@site) %>
+
   <%= form_for(@selected, :remote=> true) do |s| %>
     <span>
        <b>Viajes disponibles:</b>  
