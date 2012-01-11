@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111216164300) do
+ActiveRecord::Schema.define(:version => 20120110142000) do
 
   create_table "mi_viajes", :force => true do |t|
     t.integer  "site_id"
@@ -32,12 +32,16 @@ ActiveRecord::Schema.define(:version => 20111216164300) do
     t.string   "name"
     t.text     "description"
     t.integer  "type_id"
-    t.decimal  "latitude",    :precision => 8, :scale => 6
-    t.decimal  "longitude",   :precision => 8, :scale => 6
-    t.decimal  "zoom",        :precision => 8, :scale => 6
+    t.decimal  "latitude",           :precision => 8, :scale => 6
+    t.decimal  "longitude",          :precision => 8, :scale => 6
+    t.decimal  "zoom",               :precision => 8, :scale => 6
     t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "trips", :force => true do |t|

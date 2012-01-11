@@ -35,7 +35,7 @@
     }
 
     
-    function generaImagenConCanvas(url){
+    function generaImagenConCanvas(url, todas){
           width=48;
           height=48;
           //Recibimos el elemento canvas
@@ -65,8 +65,11 @@
                     ctx.quadraticCurveTo(0, 0, radius, 0);
                     ctx.closePath();
                     ctx.stroke();
-
-                    colocaChinchetas();
+                    if (todas){
+                      colocaChinchetas();
+                    } else {
+                      colocaNuevaChinchetaDelFinal();
+                    }
                     //window.open(elCanvas.toDataURL(),'Imagen');
 
             }

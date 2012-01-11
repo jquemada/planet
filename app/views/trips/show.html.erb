@@ -5,7 +5,7 @@
     //lasIDsdeLasImagenesCanvasArray=new Array();
     i=0;
     <%@trip.selecteds.order(:hour).each do |selected|%>
-      imagenesCanvasArray[i]=generaImagenConCanvas('<%=image_path(selected.site.image_url)%>');
+      imagenesCanvasArray[i]=generaImagenConCanvas('<%=image_path(selected.site.image.url)%>',true);
       //lasIDsdeLasImagenesCanvasArray[i]=<%=selected.site.id %>;
       i++;
     <%end%>
@@ -28,37 +28,33 @@
         //alert('Latitud: '+ data.latitude + ' Longitud: ' + data.longitude);
         latlongs[latlongs.length]=new google.maps.LatLng(data.latitude, data.longitude);
         siteNames[siteNames.length]=data.name;
-        var marker = new google.maps.Marker({
-          position: latlongs[latlongs.length-1],
-          map: map,
-          title:siteNames[siteNames.length-1]
-        });
+        imagenesCanvasArray[imagenesCanvasArray.length]=generaImagenConCanvas('/system/images/'+data.id+'/original/'+data.image_file_name,false);
       }
     });
   }
   
-  function compruebaYColoca(k) {
-   // alert('Compruebo imagen '+k);
-    sitesImagesLoaded[k]=true;
-    colocar=true;
-    for (n=0;n<sitesImagesLoaded.length;n++){
-      if(!sitesImagesLoaded[n]){
-        colocar=false;
-        break;
-      }
-    }
+  <%#*function compruebaYColoca(k) {%>
+   <%#*// alert('Compruebo imagen '+k);%>
+    <%#*sitesImagesLoaded[k]=true;%>
+    <%#*colocar=true;%>
+    <%#*for (n=0;n<sitesImagesLoaded.length;n++){%>
+      <%#*if(!sitesImagesLoaded[n]){%>
+        <%#*colocar=false;%>
+        <%#*break;%>
+      <%#*}%>
+    <%#*}%>
     
-    if(colocar){
-      //alert('Chinchetitas!!!!!!');
-      //colocaChinchetas();
+    <%#*if(colocar){%>
+      <%#*//alert('Chinchetitas!!!!!!');%>
+      <%#*//colocaChinchetas();%>
       
-    }
-  }
+    <%#*}%>
+  <%#*}%>
   
-  siteImages = new Array();
-  siteIDs = new Array();
-  sitesImagesLoaded = new Array(<%=@trip.selecteds.length%>);
-  j=0;
+//  siteImages = new Array();
+//  siteIDs = new Array();
+//  sitesImagesLoaded = new Array(<%=@trip.selecteds.length%>);
+//  j=0;
   
     
  

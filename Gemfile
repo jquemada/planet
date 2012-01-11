@@ -39,3 +39,7 @@ end
 #Gema para motor de java script
 
 gem 'therubyracer'
+
+#Paperclip
+
+gem 'paperclip'

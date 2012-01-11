@@ -69,6 +69,15 @@ function colocaChinchetas(){
     //window.open(imagenesCanvasArray[0].toDataURL());
 }
 
+function colocaNuevaChinchetaDelFinal(){
+    var marker = new google.maps.Marker({
+          position: latlongs[latlongs.length-1],
+          map: map,
+          title:siteNames[siteNames.length-1],
+          icon: imagenesCanvasArray[imagenesCanvasArray.length-1].toDataURL()
+        });
+}
+
 function errorPos(pos){alert('Error');}
 
 //Colocar posicion
