@@ -15,7 +15,7 @@
           <dt><%= link_to site.name, site %></dt> 
           <dd><div><%= truncate(strip_tags(site.description),
                  :length => 80) %></div>
-	       Añadido <%= Selected.where(site_id: site.id).count() %> veces a un viaje.</dd>
+	       Añadido <%= @num[site.id] %> <%= @num[site.id]==1?"vez":"veces" %> a un viaje.</dd>
         </dl> 
       </td>
  

@@ -10,6 +10,11 @@ class SitesController < ApplicationController
     end
     
     @selected = Selected.new
+
+    @num = {}
+    @sites.each do |s|
+	@num[s.id]=Selected.where(site_id: s.id).count()
+    end    
  
     respond_to do |format|
       format.html # index.html.erb
@@ -21,7 +26,7 @@ class SitesController < ApplicationController
   # GET /sites/1.json
   def show
     @site = Site.find(params[:id])
-
+    @num = Selected.where(site_id: @site.id).count()
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @site }
