@@ -5,7 +5,7 @@
   <%= image_tag(@site.image_url, :class => 'site_image') %>
 
   <h3><%= @site.name %></h3> 
-
+  Times included: <%= Site.count_by_sql("SELECT COUNT (id) FROM selecteds WHERE site_id ="+@site.id.to_s)%>	
   <p><%=sanitize @site.description %></p>
 
   <div class="position"> 

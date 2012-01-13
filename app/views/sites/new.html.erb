@@ -1,5 +1,16 @@
 <h1>New site</h1>
 
 <%= render 'form' %>
-
+<script type="text/javascript">
+if(navigator.geolocation){
+	navigator.geolocation.getCurrentPosition(fillFields, errorFunction);	
+	} else {
+		alert('No está soportada la geolocalización para este navegador.');}
+function fillFields(position){
+	document.getElementById("site_latitude").value = position.coords.latitude;
+	document.getElementById("site_longitude").value = position.coords.longitude;
+}
+function errorFunction(pos) { alert('Error!');}
+	
+</script>
 <%= link_to 'Back', sites_path %>

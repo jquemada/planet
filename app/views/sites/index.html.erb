@@ -23,7 +23,8 @@
         <%= link_to 'Edit', edit_site_path(site) %><br/>
         <%= link_to 'Destroy', site, 
                     :confirm => 'Are you sure?',
-                    :method => :delete %>
+                    :method => :delete %><br/>
+		Times included: <%= Site.count_by_sql("SELECT COUNT (id) FROM selecteds WHERE site_id ="+site.id.to_s)%>
       </td> 
     </tr> 
   <% end %>

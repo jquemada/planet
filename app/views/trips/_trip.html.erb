@@ -1,6 +1,10 @@
 
   <table> 
    <%  trip.selecteds.order(:hour).each do |selected| %>
+	<script type="text/javascript">
+	puntos.push(["<%=selected.site.name%>",<%= selected.site.latitude %> , <%=selected.site.longitude%>, "<%= selected.site.description %>", "<%=selected.site.image_url%>"]);
+	
+	</script>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>"> 
  
       <td> 

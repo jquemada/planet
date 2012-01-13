@@ -2,6 +2,7 @@
   <p id="notice"><%= notice %></p>
 <% end %>
 
+
 <p>
   <b>Name:</b>
   <%= @trip.name %>
@@ -37,11 +38,14 @@
 </div>
 
 <br />
+<div id="map_canvas" style="width: 80%; height:400px"></div>
+<br />
+
 
 <%= link_to 'Edit', edit_trip_path(@trip) %> 
 <%= link_to 'Back', trips_path %>
 
 <p />
 
-
+<script type="text/javascript"> mostrarMapa.call()</script>
 
