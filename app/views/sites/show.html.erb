@@ -1,3 +1,8 @@
+<!--
+MODIFICACIÓN
+* Contador de veces que el sitio ha sido añadido
+-->
+
 <div id="site">
  
   <h1><%= @site.type.name if @site.type %></h1> 
@@ -7,7 +12,7 @@
   <h3><%= @site.name %></h3> 
 
   <p><%=sanitize @site.description %></p>
-
+  Veces añadido: <%= @num %>
   <div class="position"> 
     <span>
       <b>Latitude:</b>
