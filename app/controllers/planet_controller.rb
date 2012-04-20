@@ -5,6 +5,10 @@ class PlanetController < ApplicationController
   def contact
   end
 
+  # get planet/author
+  def author
+  end
+
 # GET /planet/ejemplo
   def ejemplo
   end

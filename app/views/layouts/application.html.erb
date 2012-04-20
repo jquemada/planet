@@ -25,10 +25,26 @@
       <%= link_to "Sitios", sites_path %><br /> 
       <%= link_to "Viajes", trips_path %><br /> 
       <%= link_to "Contact", planet_contact_path %>
+<ul>
+<li> <%= link_to('index, planet_index_path') %> </li>
+<li> <%= link_to('author, planet_author_path') %> </li>
+<li> <%= link_to('ejemplo, planet_ejemplo_path') %> </li>
+<li> <%= link_to('contact, planet_contact_path') %> </li>
+<li><%=link_to('HomeType, types_index_path') %> </li>
+<li><%=link_to('OrderIndex, types_ordered_index_path') %> </li>
+</ul>
     </div> 
     <div id="main"> 
       <%= yield %>
     </div> 
   </div> 
+  <ul>
+<li> <%= link_to('index, planet_index_path') %> </li>
+<li> <%= link_to('author, planet_author_path') %> </li>
+<li> <%= link_to('ejemplo, planet_ejemplo_path') %> </li>
+<li> <%= link_to('contact, planet_contact_path') %> </li>
+<li><%=link_to('HomeType, types_index_path') %> </li>
+<li><%=link_to('OrderIndex, types_ordered_index_path') %> </li>
+</ul>
 </body> 
 </html> 

@@ -1,0 +1,4 @@
+Juan Santos Martin
+Jose Vicente Angulo Martines
+
+   Este proyecto esta creado copiando el repositorio jquemada/fork; tambien tenemos un planet creado de cero
