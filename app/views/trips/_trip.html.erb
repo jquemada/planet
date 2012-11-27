@@ -5,7 +5,7 @@
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>"> 
  
       <td> 
-        <%= link_to image_tag(selected.site.image_url, :class => 'list_image'), selected.site %>
+        <%= link_to image_tag((selected.site.image_url == "") ? selected.site.imagen.url : selected.site.image_url, :class => 'list_image'), selected.site %>
       </td> 
  
       <td class="list_description"> 

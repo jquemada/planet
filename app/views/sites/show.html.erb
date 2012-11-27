@@ -1,8 +1,41 @@
+<script type="text/javascript">
+
+        function displayPosition() {
+                var mylat = <%= @site.latitude %>;
+                var mylong = <%= @site.longitude %>;
+                // Store my position (“y=mylat”, “x=mylong”) in variable “lating”
+                var latlng = new google.maps.LatLng(mylat, mylong);
+                // Define my Google Maps options in variable “myOptions”
+                var myOptions = {
+                        zoom: 15,
+                        // Define scale
+                        center: latlng,
+                        // Define map center
+                        mapTypeId: google.maps.MapTypeId.SATELLITE // tipo Roadmad, Satellite, Terrain, Hybrid
+                };
+                // Load Google Map according to “myOptions” in Canvas identified by “map_canvas”
+                var map = new google.maps.Map(document.getElementById("mapa"), myOptions);
+                // Add marker in Google Maps “map” in position defined by “lating”
+                var marker = new google.maps.Marker({
+                position: latlng,
+                map: map,
+                title:"<%=@site.name%>"
+                });
+        }
+    window.onload=displayPosition;
+</script>
+
+<div id="location">
+        <div id="mapa" ></div>
+        <div id="geoinfo">La latitud del sitio es <%= @site.latitude %> y la longitud <%= @site.longitude %></div>
+</div>
+
 <div id="site">
  
   <h1><%= @site.type.name if @site.type %></h1> 
 
-  <%= image_tag(@site.image_url, :class => 'site_image') %>
+  <% url = (@site.image_url == "") ?@site.imagen.url : @site.image_url %>
+  <%= image_tag(url, :class => 'site_image') %>
 
   <h3><%= @site.name %></h3> 
 
@@ -10,15 +43,18 @@
 
   <div class="position"> 
     <span>
-      <b>Latitude:</b>
+      <b>Latitud:</b>
       <%= @site.latitude %>
     </span>
  
     <span>
-       <b>Longitude:</b>
+       <b>Longitud:</b>
        <%= @site.longitude %>
     </span>
   </div> 
+ <div>
+     Añadido <%= @num %> <%= @num==1?"vez":"veces" %> a un viaje.</dd>
+ </div>
 </div> 
 
 <p />

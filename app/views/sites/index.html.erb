@@ -5,15 +5,17 @@
   <% @sites.each do |site| %>
     <tr class="<%= cycle('list_line_odd', 'list_line_even') %>"> 
  
-      <td> 
-        <%= link_to image_tag(site.image_url, :class => 'list_image'), site %>
+      <td>
+        <% url = (site.image_url=="")?site.imagen.url : site.image_url %>
+        <%= link_to image_tag(url, :class => 'list_image'), site %>
       </td> 
  
       <td class="list_description"> 
         <dl> 
           <dt><%= link_to site.name, site %></dt> 
-          <dd><%= truncate(strip_tags(site.description),
-                 :length => 80) %></dd>
+          <dd><div><%= truncate(strip_tags(site.description),
+                 :length => 80) %></div>
+	       Añadido <%= @num[site.id] %> <%= @num[site.id]==1?"vez":"veces" %> a un viaje.</dd>
         </dl> 
       </td>
  
@@ -22,8 +24,19 @@
         <%= link_to 'Edit', edit_site_path(site) %><br/>
         <%= link_to 'Destroy', site, 
                     :confirm => 'Are you sure?',
-                    :method => :delete %>
-      </td> 
+                    :method => :delete %><br/>
+ 	<%= form_for(@selected, remote: true) do |f| %>
+  
+ 	<%= f.number_field :site_id, :value => site.id, :hidden => true %>
+   	<%= f.collection_select(:trip_id, 
+                            Trip.all,
+                            :id, 
+                            :name) %>
+	<%= f.select(:hour, Array.new(24, 0).fill {|i| [(i.to_s + 'H'), i]}) %>
+	<%= f.submit "Añadir sitio" %>
+	<% end %>
+ 
+    </td> 
     </tr> 
   <% end %>
   </table> 

@@ -1,4 +1,30 @@
-<%= form_for(@site) do |f| %>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script>
+function success(position) {
+  var lat = document.querySelector('#latvalue');
+  var lon = document.querySelector('#longvalue');
+  if ( lon.value || lat.value){
+	return;  
+ }
+  lat.value = position.coords.latitude;
+  lon.value = position.coords.longitude;
+}
+function error(msg) {
+  var s = document.querySelector('#status');
+  s.innerHTML = typeof msg == 'string' ? msg : "failed";
+  s.className = 'fail';
+  
+  // console.log(arguments);
+}
+if (navigator.geolocation) {
+  navigator.geolocation.getCurrentPosition(success, error);
+} else {
+  error('not supported');
+}
+</script>
+
+
+<%= form_for @site, :html => { :multipart => true } do |f| %>
   <% if @site.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h2>
@@ -23,22 +49,25 @@
     <%= f.label :type_id %><br />
     <%= f.collection_select(:type_id, Type.find(:all, :order => :name), :id, :name) %>
   </div>
-  <div class="field">
+  <div class="field" id="latitude">
     <%= f.label :latitude %><br />
-    <%= f.text_field :latitude %>
+    <%= f.text_field :latitude, id:"latvalue" %>
   </div>
-  <div class="field">
+  <div class="field" id="longitude">
     <%= f.label :longitude %><br />
-    <%= f.text_field :longitude %>
+    <%= f.text_field :longitude, id:"longvalue" %>
   </div>
   <div class="field">
     <%= f.label :zoom %><br />
     <%= f.text_field :zoom %>
   </div>
-  <div class="field">
+<!--  <div class="field">
     <%= f.label :image_url %><br />
     <%= f.text_field :image_url %>
-  </div>
+  </div> -->
+  <div class="field">
+  Imagen del sitio: <br/>
+  <%= f.file_field :imagen, label: "Imagen" %>
   <div class="actions">
     <%= f.submit %>
   </div>

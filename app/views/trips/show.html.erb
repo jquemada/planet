@@ -1,3 +1,45 @@
+<script type="text/javascript">
+
+        function displayPosition() {
+                var mylat = <%= 40.0 %>;
+                var mylong = <%= 40.0 %>;
+                // Store my position (“y=mylat”, “x=mylong”) in variable “lating”
+                var latlng = new google.maps.LatLng(mylat, mylong);
+                // Define my Google Maps options in variable “myOptions”
+                var myOptions = {
+                        zoom: 4,
+                        // Define scale
+                        center: latlng,
+                        // Define map center
+                        mapTypeId: google.maps.MapTypeId.SATELLITE // tipo Roadmad, Satellite, Terrain, Hybrid
+                };
+                // Load Google Map according to “myOptions” in Canvas identified by “map_canvas”
+                var map = new google.maps.Map(document.getElementById("mapa"), myOptions);
+                // Add marker in Google Maps “map” in position defined by “lating”
+	<% for s in @selecteds do %>
+		<% site = Site.find(s.site_id) %>
+		var title<%= site.id %> = "<%= site.name %>";
+		var mylatt<%= site.id %> = <%= site.latitude %>;
+		var mylongt<%= site.id %> = <%= site.longitude %>;
+
+                var latlngt<%= site.id %> = new google.maps.LatLng(mylatt<%= site.id %>, mylongt<%= site.id %>);
+		var image = new google.maps.MarkerImage(
+		  "<%= image_path((site.image_url == "") ?site.imagen.url : site.image_url) %>",
+		  new google.maps.Size(80,70),
+ 		  new google.maps.Point(0,0),
+		  new google.maps.Point(20,35),
+		  new google.maps.Size(80,70)
+		);
+		var marker<%= site.id %>  = new google.maps.Marker({
+                position: latlngt<%= site.id %>,
+                map: map,
+                title: title<%= site.id %>,
+		icon: image
+                });
+	<% end %>
+        }
+    window.onload=displayPosition;
+</script>
 <% if notice %>
   <p id="notice"><%= notice %></p>
 <% end %>
@@ -20,6 +62,17 @@
 
 <div id="site_list">
 
+<div id="location">
+	<% for s in @selecteds do %>
+	<% site = Site.find(s.site_id) %>
+	<%= site.name %>
+	<%= site.latitude %>
+	<%= site.longitude %>
+	<%= site.image_url %>
+	<br>
+	<% end %>
+        <div id="mapa" ></div>
+</div>
   <h1>Sitios a visitar</h1>
 
   <%= render(@trip) %>
@@ -42,6 +95,3 @@
 <%= link_to 'Back', trips_path %>
 
 <p />
-
-
-
