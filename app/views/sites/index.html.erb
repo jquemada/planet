@@ -1,3 +1,8 @@
+<!--
+MODIFICACIÓN:
+* Añado linea contador veces añadido
+-->
+
 <div id="site_list"> 
   <h1>Listing Sites</h1> 
  
@@ -14,6 +19,11 @@
           <dt><%= link_to site.name, site %></dt> 
           <dd><%= truncate(strip_tags(site.description),
                  :length => 80) %></dd>
+
+
+              <br/> Veces añadido: <%= @num[site.id] %>
+
+
         </dl> 
       </td>
  
@@ -22,8 +32,8 @@
         <%= link_to 'Edit', edit_site_path(site) %><br/>
         <%= link_to 'Destroy', site, 
                     :confirm => 'Are you sure?',
-                    :method => :delete %>
-      </td> 
+                    :method => :delete %><br/>
+    </td> 
     </tr> 
   <% end %>
   </table> 

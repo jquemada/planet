@@ -1,3 +1,7 @@
+#MODIFICACIONES:
+# * index: creo hash con sitio-numero_repeticiones para la vista index_html.erb de sites
+# * show: defino num para la vista show.html.erb  de sites
+
 class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
@@ -8,7 +12,13 @@ class SitesController < ApplicationController
     else
       @sites = Type.find(params[:type_id]).sites
     end
-    
+
+    #creo hash con sitio-numero_repeticiones para la vista index_html.erb de sites
+    @num = {}
+    @sites.each do |s|
+	@num[s.id] = Selected.where(site_id: s.id).count()
+    end
+ 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sites }
@@ -19,6 +29,9 @@ class SitesController < ApplicationController
   # GET /sites/1.json
   def show
     @site = Site.find(params[:id])
+
+    # defino num para la vista show.html.erb de sites
+    @num = Selected.where(site_id: @site.id).count()
 
     respond_to do |format|
       format.html # show.html.erb
