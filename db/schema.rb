@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20111211202305) do
     t.decimal  "longitude",   :precision => 8, :scale => 6
     t.decimal  "zoom",        :precision => 8, :scale => 6
     t.string   "image_url"
+    t.integer  "visits"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -8,6 +8,7 @@ class CreateSites < ActiveRecord::Migration
       t.decimal :longitude, :precision => 8, :scale => 6
       t.decimal :zoom,      :precision => 8, :scale => 6
       t.string :image_url
+	  t.integer :visits
 
       t.timestamps
     end

@@ -1,0 +1,35 @@
+<div id="site_list"> 
+<h1>Listing viajes</h1>
+
+<table>
+
+  <% @viajes.each do |viaje| %>
+  <% site = Site.find(viaje.site_ide) %>
+    <tr class="<%= cycle('list_line_odd', 'list_line_even') %>"> 
+ 
+      <td> 
+        <%= link_to image_tag(site.image_url, :class => 'list_image'), site %>
+      </td> 
+ 
+      <td class="list_description"> 
+        <dl> 
+          <dt><%= link_to site.name, site %></dt> 
+          <dd><%= truncate(strip_tags(site.description),
+                 :length => 80) %></dd>
+        </dl> 
+      </td>
+ 
+      <td class="list_actions"> 
+        <%= link_to 'Show', site %><br/>
+        <%= link_to 'Edit', edit_viaje_path(viaje) %><br/>
+        <%= link_to 'No incluir', viaje, 
+                    :confirm => 'Are you sure?',
+		    remote: true, class: 'delete_viaje',
+                    :method => :delete %>
+      </td> 
+    </tr> 
+  <% end %>
+  </table> 
+</div> 
+ 
+<br /> 

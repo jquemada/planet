@@ -78,6 +78,12 @@ class SitesController < ApplicationController
   # DELETE /sites/1.json
   def destroy
     @site = Site.find(params[:id])
+	
+	@selecteds = Selected.find_all_by_site_id(params[:id]) #buscamos todos los selected con site id igual al parámetro id y los eliminamos.
+	@selecteds.each do |selected|
+	selected.destroy
+	end
+	
     @site.destroy
 
     respond_to do |format|

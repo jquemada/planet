@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  site_ide: 1
+  pos: 1
+
+two:
+  site_ide: 1
+  pos: 1
