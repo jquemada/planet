@@ -17,11 +17,6 @@
 }
 
 /* Styles for products/index */
-#site df {
-	color:        #244;
-	font-style:  italic;
-	font-size:    x-small;
-}
 
 #site_list table {
         border-collapse: collapse;
@@ -66,11 +61,6 @@
   font-size:    x-small;
   text-align:   right;
   padding-left: 1em;
-}
-#site_list .list_actions df {
-	color:        #244;
-	font-style:  italic;
-	font-size:    x-small;
 }
 
 #site_list .list_line_even {

@@ -35,7 +35,7 @@
          <% if  Trip.where("site_id like ?",site.id)==[]%>
                     <%= form_for (@trip) do |f| %>
                     <%= f.number_field :site_id, :value => site.id, :hidden => true %>
-                    <%= f.number_field :position, :value => Trip.count+1, :hidden => true %>
+                    <%= f.number_field :position, :value => Trip.count, :hidden => true %>
                     <%= f.submit "Incluir" %>
                    
                     

@@ -1,6 +1,12 @@
 Planet::Application.routes.draw do
 
   resources :trips
+
+  resources :sites do
+    collection do
+        get 'search'
+    end
+  end
     
   resources :sites
     

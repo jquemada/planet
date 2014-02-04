@@ -16,9 +16,7 @@
   	<%= f.number_field :position, :value => Trip.count, :hidden => true %>
   	<%= f.submit "Incluir" %>
   	<% end %><br />
-  <%else%>
-                    <df>El sitio ya está incluido en tu viaje</df>
-  	<%end%>
+  <%end%>
   
 </div> 
 

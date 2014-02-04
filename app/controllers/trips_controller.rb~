@@ -2,7 +2,7 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-  	  @trips = Trip.order(:position)
+      @trips = Trip.all
 
     respond_to do |format|
       format.html # index.html.erb

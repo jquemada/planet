@@ -1,7 +1,8 @@
 <%= form_for(@trip) do |f| %>
   <h1>Elige la posición de <%= @trip.site.name %> en tu Viaje</h1>
+  <h5>Info: La primera posición se marca con 0</h5>
   <div class="field">
-    <%= f.label :posición %><br />
+    <%= f.label :position %><br />
     <%= f.number_field :position %>
   </div>
   <div class="actions">
