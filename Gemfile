@@ -5,8 +5,12 @@ gem 'rails', '3.1.3'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
+
+#For local developement
 gem 'sqlite3'
 
+#For Heroku.
+#gem 'pg'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -35,3 +39,11 @@ group :test do
   # Pretty printed test output
   gem 'turn', '0.8.2', :require => false
 end
+
+#Gema para motor de java script
+
+gem 'therubyracer'
+
+#Paperclip
+
+gem 'paperclip'

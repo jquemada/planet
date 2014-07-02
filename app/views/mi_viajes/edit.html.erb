@@ -1,0 +1,24 @@
+<h1>Editing Mi Viaje</h1>
+<div id="site_list">
+<table>
+<% @mi_viajes.each do |mi_viaje| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+
+    <td> 
+        <%= link_to image_tag(mi_viaje.site.image.url, :class => 'list_image'), mi_viaje.site %>
+    </td> 
+ 
+
+    <td class="list_description"><%= mi_viaje.site.name %></td>
+    <td class="list_actions">
+      <%= link_to image_tag('Arrow-Up.png', :class => 'miniIcon'), swap_mi_viaje_path(mi_viaje, :nuevo_id => dameAnterior(mi_viaje)), method: :post%> 
+      <%= link_to image_tag('Arrow-Down.png', :class => 'miniIcon'), swap_mi_viaje_path(mi_viaje, :nuevo_id => dameSiguiente(mi_viaje)), method: :post%> 
+      <%= link_to image_tag('delete.png', :class => 'miniIcon'), mi_viaje, confirm: 'Are you sure?', method: :delete %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+
+</div>
+<%= link_to 'Back', mi_viajes_path %>

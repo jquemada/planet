@@ -1,0 +1,27 @@
+<h1>Planificaci&oacute;n de mi viaje</h1>
+<div id="site_list">
+<table>
+<% @mi_viajes.each do |mi_viaje| %>
+  <tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
+
+    <td> 
+        <%= link_to image_tag(mi_viaje.site.image.url, :class => 'list_image'), mi_viaje.site %>
+    </td> 
+ 
+
+    <td class="list_description"><%= mi_viaje.site.name %></td>
+    <td class="list_actions">
+      <%= link_to 'Show', mi_viaje.site %><br />
+    </td>
+  </tr>
+<% end %>
+</table>
+
+
+</div>
+
+<%= link_to 'Editar Mis Viajes', edit_mi_viajes_path %>
+
+<br />
+
+

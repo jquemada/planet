@@ -2,6 +2,72 @@
 <html> 
 <head> 
   <title>Planet</title>
+  <script src="http://maps.google.com/maps/api/js?sensor=false">
+  // Carga la librería de Google Maps
+  // Doc de Google Maps API: http://code.google.com/apis/maps/documentation/javascript/
+  </script>
+  
+  <script language="javascript">
+
+    function cargaContextoCanvasInventado(width,height){
+      var elemento = document.createElement('canvas');
+      elemento.width=width;
+      elemento.height=height;
+      elCanvas=elemento;
+            if(elemento && elemento.getContext){
+                    var contexto = elemento.getContext('2d');
+                    if(contexto){
+                            return contexto;
+                    }
+            }
+            return FALSE;
+    }
+
+    
+    function generaImagenConCanvas(url, todas){
+          width=48;
+          height=48;
+          //Recibimos el elemento canvas
+          var ctx = cargaContextoCanvasInventado(width,height);
+          if(ctx){
+            radius=4;
+            //Creo una imagen conun objeto Image de Javascript
+            var img = new Image();
+            //indico la URL de la imagen
+            img.src = url;
+            //defino el evento onload del objeto imagen
+            img.onload = function(){
+                    //incluyo la imagen en el canvas
+                    ctx.drawImage(img, 0,0,width-1,height-1);
+                    ctx.lineWidth=5;
+                    ctx.strokeStyle = "rgba(255,0,0,1)";
+                    ctx.beginPath();
+                    ctx.moveTo(radius, 0);
+                    ctx.lineTo(width - radius, 0);
+                    ctx.quadraticCurveTo(width, 0, width, radius);
+                    ctx.lineTo(width, height - radius);
+                    ctx.quadraticCurveTo(width, height, width - radius, height);
+                    ctx.lineTo(radius, height);
+                    ctx.quadraticCurveTo(0, height, 0, height - radius);
+                    ctx.lineTo(0, radius);
+                    ctx.quadraticCurveTo(0, 0, radius, 0);
+                    ctx.closePath();
+                    ctx.stroke();
+                    if (todas){
+                      colocaChinchetas();
+                    } else {
+                      colocaNuevaChinchetaDelFinal();
+                    }
+            }
+            return elCanvas;
+       }
+    }
+    
+
+    
+
+</script>
+ 
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -24,11 +90,14 @@
       <%= link_to "Tipos",  types_path %><br /> 
       <%= link_to "Sitios", sites_path %><br /> 
       <%= link_to "Viajes", trips_path %><br /> 
-      <%= link_to "Contact", planet_contact_path %>
+      <%= link_to "Mi viaje", mi_viajes_path %><br />
+      <%= link_to "Contact", planet_contact_path %><br />
+      <%= link_to "Author", planet_author_path %>
     </div> 
     <div id="main"> 
       <%= yield %>
     </div> 
   </div> 
+
 </body> 
 </html> 

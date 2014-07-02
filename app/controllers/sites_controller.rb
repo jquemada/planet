@@ -19,7 +19,8 @@ class SitesController < ApplicationController
   # GET /sites/1.json
   def show
     @site = Site.find(params[:id])
-
+    @mi_viaje_candidate = MiViaje.new
+    @mi_viaje_candidate.site = @site
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @site }
@@ -78,6 +79,10 @@ class SitesController < ApplicationController
   # DELETE /sites/1.json
   def destroy
     @site = Site.find(params[:id])
+    @site.destroy
+    #Borro las entradas de mi viaje que me hagan referencia.
+   
+    MiViaje.delete_all('site_id = ' + @site.id.to_s)
     @site.destroy
 
     respond_to do |format|

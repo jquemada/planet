@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Site:</b>
+  <%= @mi_viaje.site_id %>
+</p>
+
+<p>
+  <b>Order:</b>
+  <%= @mi_viaje.order_in_trip %>
+</p>
+
+
+<%= link_to 'Edit', edit_mi_viaje_path(@mi_viaje) %> |
+<%= link_to 'Back', mi_viajes_path %>

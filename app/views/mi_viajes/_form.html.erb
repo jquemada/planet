@@ -1,0 +1,25 @@
+<%= form_for(@mi_viaje) do |f| %>
+  <% if @mi_viaje.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mi_viaje.errors.count, "error") %> prohibited this mi_viaje from being saved:</h2>
+
+      <ul>
+      <% @mi_viaje.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :site_id %><br />
+    <%= f.number_field :site_id %>
+  </div>
+  <div class="field">
+    <%= f.label :order_in_trip %><br />
+    <%= f.number_field :order_in_trip %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

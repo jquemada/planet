@@ -2,7 +2,7 @@
  
   <h1><%= @site.type.name if @site.type %></h1> 
 
-  <%= image_tag(@site.image_url, :class => 'site_image') %>
+  <%= image_tag(@site.image.url, :class => 'site_image') %>
 
   <h3><%= @site.name %></h3> 
 
@@ -19,8 +19,20 @@
        <%= @site.longitude %>
     </span>
   </div> 
+  <p/>
+  Ha sido seleccionado <%= Selected.where('site_id=?',@site.id).count %> veces en alg&uacute;n viaje.
 </div> 
 
+<p />
+
+<%= form_for(@mi_viaje_candidate) do |f| %>
+
+<%= f.number_field :site_id, {:value => @site.id, :style => "display:none"} %>
+
+<%= f.number_field :order_in_trip, {:style => "display:none"} %>
+
+<%= f.submit nil, :value => "Añadir a Mi Viaje"%>
+<%end%>
 <p />
 <%= link_to 'Edit', edit_site_path(@site) %> |
 <%= link_to 'Back', sites_path %>
